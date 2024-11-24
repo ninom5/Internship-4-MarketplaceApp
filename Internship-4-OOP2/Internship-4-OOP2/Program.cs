@@ -1,4 +1,5 @@
-﻿using Internship_4_OOP2.Presentation;
+﻿using Internship_4_OOP2.Domain.Classes;
+using Internship_4_OOP2.Presentation;
 
 namespace Internship_4_OOP2
 {
@@ -6,7 +7,9 @@ namespace Internship_4_OOP2
     {
         public static void Main(string[] args)
         {
-            MainMenu.ShowMainMenu();
+            MarketPlace marketPlace = new MarketPlace();
+            MarketPlaceFunctions.SetMarketPlace(marketPlace);
+            MainMenu.ShowMainMenu(marketPlace);
         }
     }
 }

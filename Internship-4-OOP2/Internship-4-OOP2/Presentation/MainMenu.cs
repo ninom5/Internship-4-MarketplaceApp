@@ -1,4 +1,5 @@
-﻿using Internship_4_OOP2.Domain.Classes;
+﻿using Internship_4_OOP2.Data;
+using Internship_4_OOP2.Domain.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,30 +10,19 @@ namespace Internship_4_OOP2.Presentation
 {
     public static class MainMenu
     {
-        public static void ShowMainMenu()
+        public static void ShowMainMenu(MarketPlace marketPlace)
         {
-            bool isValid = false;
             while (true)
             {
-                Console.WriteLine("\n1.Registracija korisnika \n2.Prijava korisnika \n3.Opcije za kupca \n4.Opcije za prodavače \n5.Transakcije \n0 - izlaz iz programa");
+                Console.WriteLine("\n1.Registracija korisnika \n2.Prijava korisnika \n3.Transakcije \n0 - izlaz iz programa");
                 char option = Console.ReadKey().KeyChar;
                 switch (option)
                 {
                     case '1':
-                        while (!isValid)
-                        {
-                            Console.WriteLine("1. Registracija kupca \n2. Registracija prodavaca");
-                            char userOption = Console.ReadKey().KeyChar;
-                            switch (userOption)
-                            {
-                                case '1':
-                                    BuyerFunctions.BuyerRegistration();
-                                    isValid = true;
-                                    break;
-                            }
-                        }
+                        UtilityFunctions.PickTypeOfUser(marketPlace);
                         break;
                     case '2':
+                        UtilityFunctions.Login(marketPlace);
                         break;
                     case '3':
                         break;
