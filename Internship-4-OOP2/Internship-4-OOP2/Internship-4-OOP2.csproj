@@ -10,8 +10,6 @@
 
   <ItemGroup>
     <Folder Include="Classes\" />
-    <Folder Include="Main\" />
-    <Folder Include="Visibility\" />
   </ItemGroup>
 
 </Project>
