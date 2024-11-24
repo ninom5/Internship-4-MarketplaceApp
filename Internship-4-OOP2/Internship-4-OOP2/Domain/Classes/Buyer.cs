@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Internship_4_OOP2.Domain.Classes
 {
-    public class Prodavac : Korisnik
+    public class Buyer : User
     {
-        protected int IdOf = 0;
-        private Dictionary<IdOf, Tuple>
-        public Prodavac(string name, string email) : base(name, email)
+        public double Amount{ get; }
+        public Buyer(string name, string email, double amount) : base(name, email)
         {
-
+            Amount = amount;
         }
     }
 }
