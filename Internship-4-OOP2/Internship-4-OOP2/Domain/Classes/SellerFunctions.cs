@@ -20,5 +20,24 @@ namespace Internship_4_OOP2.Domain.Classes
             }
             return new Seller(user.Name, user.Email);
         }
+        public static void SubstractAmountSeller(Seller seller, double amount)
+        {
+            if (amount < 0)
+            {
+                Console.WriteLine("iznos ne moze biti negativan");
+                return;
+            }
+
+            seller.SetNewEarnings(-amount);
+        }
+        public static void AddAmountSeller(Seller seller, double amount)
+        {
+            if (amount < 0)
+            {
+                Console.WriteLine("iznos ne moze biti negativan");
+                return;
+            }
+            seller.SetNewEarnings(amount);
+        }
     }
 }

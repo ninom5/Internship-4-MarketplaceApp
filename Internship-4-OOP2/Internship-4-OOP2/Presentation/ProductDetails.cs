@@ -11,6 +11,11 @@ namespace Internship_4_OOP2.Presentation
     {
         public static void PrintProductDetails(Product product)
         {
+            if(product == null)
+            {
+                Console.WriteLine("Nema proizvoda");
+                return;
+            }
             Console.WriteLine($"Ime proizvoda: {product.Name}, opis proizvoda: {product.Description}, id proizvoda: {product.getId()}, cijena: {product.Price}, status proizvoda: {product.ProductStatus}, kategorija: {product.ProductType}, prodavac: {product.Seller.Name}");
         }
     }

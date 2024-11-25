@@ -25,6 +25,7 @@ namespace Internship_4_OOP2.Presentation
                         UtilityFunctions.Login(marketPlace);
                         break;
                     case '3':
+                        TransactionFunctions.ShowAllTransactions(marketPlace);
                         break;
                     case '0':
                         return;

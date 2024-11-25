@@ -115,6 +115,20 @@ namespace Internship_4_OOP2.Data
 
             return false;
         }
+
+        public static void ShowBuyerProducts(MarketPlace marketplace, Buyer buyer, List<Transaction> boughtProducts)
+        {
+            if(!boughtProducts.Any())
+            {
+                Console.WriteLine("Nema proizvoda, unesite 0 za prekid");
+                return; 
+            }
+            foreach(var transaction in boughtProducts)
+            {
+                Console.WriteLine($"Id transakcije: {transaction.IdOfTransaction}, naziv proizvoda: {transaction.Product.Name}, id proizvoda: {transaction.Id}, kupac: {transaction.Buyer.Name}, " +
+                    $"prodavac: {transaction.Seller.Name}, datum i vrijeme transakcije: {transaction.DateTimeOfTransaction}, kategorija proizvoda: {transaction.ProductType}");
+            }
+        }
         public static Data.Category ChooseCategory()
         {
             while (true)

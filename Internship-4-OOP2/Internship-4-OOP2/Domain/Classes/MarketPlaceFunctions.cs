@@ -29,5 +29,10 @@ namespace Internship_4_OOP2.Domain.Classes
             marketPlace.ProductList.Add(product);
             Console.WriteLine("Proizvod uspjesno dodan u listu s proizvodima");
         }
+        public static void AddTransaction(Transaction transaction)
+        {
+            marketPlace.TransactionsList.Add(transaction);
+            Console.WriteLine("Transakcija uspjesno dodana u listu s transakcijama");
+        }
     }
 }

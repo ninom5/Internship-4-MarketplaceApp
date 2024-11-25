@@ -24,9 +24,8 @@ namespace Internship_4_OOP2
             Product productMate1 = new Product("laptop", "Lenovo", 649.99, Data.Category.Elektronika, sellerMate);
             marketPlace.ProductList.Add(productMate1);
 
-            Buyer buyer1 = new Buyer("n", "n@n.n", 120);
+            Buyer buyer1 = new Buyer("n", "n@n.n", 700);
             marketPlace.BuyerList.Add(buyer1);
-
 
             MainMenu.ShowMainMenu(marketPlace);
         }

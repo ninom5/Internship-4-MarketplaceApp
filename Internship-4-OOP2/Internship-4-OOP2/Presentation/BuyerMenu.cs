@@ -26,6 +26,7 @@ namespace Internship_4_OOP2.Presentation
                         ProductFunctions.PickProduct(marketPlace, buyer);
                         return;
                     case '3':
+                        ProductFunctions.ReturnProduct(marketPlace, buyer);
                         return;
                 }
             }
