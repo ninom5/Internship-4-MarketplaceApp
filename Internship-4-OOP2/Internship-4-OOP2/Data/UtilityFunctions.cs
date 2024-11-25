@@ -74,7 +74,7 @@ namespace Internship_4_OOP2.Data
             Seller seller = CheckIsSeller(email, marketPlace);
             if (seller != null)
             {
-                //ShowSellerOptions(seller);
+                SellerMenu.ShowSellerOptions(seller, marketPlace);
                 return;
             }
 
@@ -114,6 +114,28 @@ namespace Internship_4_OOP2.Data
                 return true;
 
             return false;
+        }
+        public static Data.Category ChooseCategory()
+        {
+            while (true)
+            {
+                Console.WriteLine("Odaberite kategoriju: \n\t1.Elektronika \n\t2.Odjeca \n\t3.Knjige \n\t4.Obuca");
+                char option = Console.ReadKey().KeyChar;
+                switch (option)
+                {
+                    case '1':
+                        return Category.Elektronika;
+                    case '2':
+                        return Category.Odjeca;
+                    case '3':
+                        return Category.Knjige;
+                    case '4':
+                        return Category.Obuća;
+                    default:
+                        Console.WriteLine("Ne ispravan unos");
+                        break;
+                }
+            }
         }
     }
 }

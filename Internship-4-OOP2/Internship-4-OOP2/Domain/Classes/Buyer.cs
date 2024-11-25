@@ -8,7 +8,7 @@ namespace Internship_4_OOP2.Domain.Classes
 {
     public class Buyer : User
     {
-        public double Amount{ get; }
+        public double Amount{ get; set; }
         public Buyer(string name, string email, double amount) : base(name, email)
         {
             Amount = amount;

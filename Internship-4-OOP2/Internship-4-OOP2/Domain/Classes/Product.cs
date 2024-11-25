@@ -8,15 +8,14 @@ namespace Internship_4_OOP2.Domain.Classes
 {
     public class Product
     {
-        public Dictionary<Guid, Tuple<string, string, double, Buyer, Enum, Enum>> productDictonary = new Dictionary<Guid, Tuple<string, string, double, Buyer, Enum, Enum>>();
         private Guid Id { get; }
         public string Name { get; }
         public string Description { get; }
         public double Price { get; protected set; }
-        public Buyer? Buyer;
-        public Enum ProductStatus { get; protected set; }
-        public Enum ProductType { get; protected set; }
-        public Product(string name, string description, double price, Enum productType)
+        public Seller Seller { get; protected set; }
+        public Data.ProductStatus ProductStatus { get; set; }
+        public Data.Category ProductType { get; protected set; }
+        public Product(string name, string description, double price, Data.Category productType, Seller seller)
         {
             Id = Guid.NewGuid();
             Name = name;
@@ -24,6 +23,11 @@ namespace Internship_4_OOP2.Domain.Classes
             Price = price;
             ProductStatus = Data.ProductStatus.Na_prodaji;
             ProductType = productType;
+            Seller = seller;
+        }
+        public Guid getId()
+        {
+            return Id;
         }
     }
 }

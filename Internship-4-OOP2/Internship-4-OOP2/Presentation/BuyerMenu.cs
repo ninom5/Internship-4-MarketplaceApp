@@ -19,20 +19,16 @@ namespace Internship_4_OOP2.Presentation
                 switch (option)
                 {
                     case '1':
-                        ProductFunctions.ShowAllProducts();
-                        break;
+                        ProductFunctions.ShowAllProductsOnSale(marketPlace);
+                        return;
+                    case '2':
+                        ProductFunctions.ShowAllProductsOnSale(marketPlace);
+                        ProductFunctions.PickProduct(marketPlace, buyer);
+                        return;
+                    case '3':
+                        return;
                 }
             }
         }
     }
 }
-
-/*○	Pregled svih proizvoda dostupnih za prodaju s detaljima (naziv, cijena, opis).
-○	Kupnja proizvoda unosom ID-a proizvoda.
-■	Provjerava se je li proizvod dostupan i ima li kupac dovoljno sredstava.
-■	Ako kupnja uspije, proizvod prelazi u status "prodano", a kupcu se smanjuje balans.
-○	Povratak kupljenog proizvoda.
-○	Dodavanje proizvoda u listu omiljenih
-○	Pregled povijesti kupljenih proizvoda.
-○	Pregled liste omiljenih proizvoda
-*/

@@ -26,10 +26,6 @@ namespace Internship_4_OOP2.Presentation
                         break;
                     case '3':
                         break;
-                    case '4':
-                        break;
-                    case '5':
-                        break;
                     case '0':
                         return;
                     default:
