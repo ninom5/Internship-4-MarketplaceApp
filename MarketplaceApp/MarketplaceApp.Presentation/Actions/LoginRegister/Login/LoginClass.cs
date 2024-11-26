@@ -43,11 +43,12 @@ namespace MarketplaceApp.Presentation.Actions.LoginRegister.Login
                 Console.WriteLine($"Dobro dosli, {user.Name}, {user.UserType()}");
                 BuyerMenu.ShowBuyerOptions(buyer, marketPlace);
             }
-            else
+            
+            if(user is Seller seller)
             {
                 Console.Clear();
                 Console.WriteLine($"Dobro dosli, {user.Name}, {user.UserType()}");
-                
+                SellerMenu.ShowSellerOptions(seller, marketPlace);
             }
         }
     }

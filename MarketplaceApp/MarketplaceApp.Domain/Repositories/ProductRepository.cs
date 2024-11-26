@@ -1,5 +1,6 @@
 ﻿using MarketplaceApp.Data.Enum;
 using MarketplaceApp.Data.Models;
+using MarketplaceApp.Domain.DomainEnums;
 
 namespace MarketplaceApp.Domain.Repositories
 {
@@ -29,6 +30,18 @@ namespace MarketplaceApp.Domain.Repositories
         public static void AddProductToFavourite(Buyer buyer, Product product)
         {
             buyer.FavouriteProductsList.Add(product);
+        }
+        public static DomainEnums.Result AddNewProduct(Marketplace marketplace, Product product)
+        {
+            try
+            {
+                marketplace.ProductList.Add(product);
+            }
+            catch (Exception ex)
+            {
+                return Result.Failed;
+            }
+            return Result.Success;
         }
     }
 }

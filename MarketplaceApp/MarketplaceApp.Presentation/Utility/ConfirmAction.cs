@@ -1,5 +1,6 @@
 ﻿using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.NewFolder;
+using System.Transactions;
 
 namespace MarketplaceApp.Presentation.Utility
 {
@@ -13,11 +14,19 @@ namespace MarketplaceApp.Presentation.Utility
                 return ReadInput.CheckConfirmationInput();
             }
         }
-        public static bool Confirm(Transaction transaction)
+        public static bool Confirm(Data.Models.Transaction transaction)
         {
             while (true)
             {
                 Console.WriteLine($"Zelite li vratiti proizvod {transaction.Product.Name}. \ny/n");
+                return ReadInput.CheckConfirmationInput();
+            }
+        }
+        public static bool Confirm()
+        {
+            while (true)
+            {
+                Console.WriteLine($"Zelite li dodati novi proizvod. \ny/n");
                 return ReadInput.CheckConfirmationInput();
             }
         }

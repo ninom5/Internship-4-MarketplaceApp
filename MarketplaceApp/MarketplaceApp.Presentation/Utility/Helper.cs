@@ -1,17 +1,35 @@
-﻿using MarketplaceApp.Data.Models;
+﻿using MarketplaceApp.Data.Enum;
+using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.DomainEnums;
 using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.Show;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarketplaceApp.Presentation.Utility
 {
     public class Helper
     {
+        public static Category ChooseCategory()
+        {
+            while (true)
+            {
+                Console.WriteLine("Odaberite kategoriju: \n\t1.Elektronika \n\t2.Odjeca \n\t3.Knjige \n\t4.Obuca");
+                char option = Console.ReadKey().KeyChar;
+                switch (option)
+                {
+                    case '1':
+                        return Category.Elektronika;
+                    case '2':
+                        return Category.Odjeca;
+                    case '3':
+                        return Category.Knjige;
+                    case '4':
+                        return Category.Obuća;
+                    default:
+                        Console.WriteLine("Ne ispravan unos");
+                        break;
+                }
+            }
+        }
         public static Result ShowAllProductsOnSale(Marketplace marketPlace)
         {
             var listOfProducts = ProductRepository.AllProductsOnSale(marketPlace);

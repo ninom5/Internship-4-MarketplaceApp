@@ -74,7 +74,50 @@ namespace MarketplaceApp.Domain.NewFolder
                 return productId;
             }
         }
+        public static string ReadProductName()
+        {
+            while (true)
+            {
+                Console.WriteLine("Unesite naziv proizvoda:");
+                var name = Console.ReadLine();
+                if (string.IsNullOrEmpty(name))
+                {
+                    Console.WriteLine("Ne ispravan unos");
+                    continue;
+                }
 
+                return name;
+            }
+        }
+        public static string ReadProductDescription()
+        {
+            while (true)
+            {
+                Console.WriteLine("Unesite opis proizvoda:");
+                var name = Console.ReadLine();
+                if (string.IsNullOrEmpty(name))
+                {
+                    Console.WriteLine("Ne ispravan unos, opis ne moze biti prazan");
+                    continue;
+                }
+
+                return name;
+            }
+        }
+        public static double ReadPrice()
+        {
+            while (true)
+            {
+                Console.WriteLine("Unesite cijenu proizvoda");
+                double price;
+                if (!double.TryParse(Console.ReadLine(), out price) || price < 0)
+                {
+                    Console.WriteLine("ne ispravan unos");
+                    continue;
+                }
+                return price;
+            }
+        }
         public static bool CheckConfirmationInput()
         {
             while (true)
