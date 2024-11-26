@@ -23,5 +23,9 @@ namespace MarketplaceApp.Domain.Repositories
         {
             return marketplace.UserList.Any(user => user.Email == email);
         }
+        public User FindUser(string email, Marketplace marketplace)
+        {
+            return marketplace.UserList.FirstOrDefault(user => user.Email == email);
+        }
     }
 }

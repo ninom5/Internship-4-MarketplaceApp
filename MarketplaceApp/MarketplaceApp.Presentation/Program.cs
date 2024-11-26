@@ -1,14 +1,16 @@
 ﻿using MarketplaceApp.Data.Models;
+using MarketplaceApp.Presentation.Menu;
 
 namespace MarketplaceApp.Presentation
 {
     class Program
     {
-        public void Main(string[] args)
+        public static void Main(string[] args)
         {
             Marketplace marketPlace = new Marketplace();
+            MainMenu mainMenu = new MainMenu();
 
-            //MainMenu.ShowMainMenu(marketPlace);
+            mainMenu.ShowMainMenu(marketPlace);
         }
     }
 }

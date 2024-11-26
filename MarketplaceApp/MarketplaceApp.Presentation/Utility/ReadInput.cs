@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketplaceApp.Presentation
+namespace MarketplaceApp.Presentation.Utility
 {
     public class ReadInput
     {
         public static string ReadName()
         {
             string name = "";
-            Console.WriteLine("Unesite ime:");
-            
+
+
             while (true)
             {
+                Console.WriteLine("Unesite ime:");
                 name = Console.ReadLine();
                 if (string.IsNullOrEmpty(name))
                 {
@@ -27,7 +28,7 @@ namespace MarketplaceApp.Presentation
         }
         public static string ReadEmail()
         {
-            while(true)
+            while (true)
             {
                 Console.WriteLine("Unesite email");
                 string email = Console.ReadLine();
@@ -62,6 +63,7 @@ namespace MarketplaceApp.Presentation
                     Console.WriteLine("Ne ispravan unos, unesite opet");
                     continue;
                 }
+                return balance;
             }
         }
     }
