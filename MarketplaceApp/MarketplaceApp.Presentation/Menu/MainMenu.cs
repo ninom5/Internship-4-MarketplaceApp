@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MarketplaceApp.Data.Models;
+﻿using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.LoginRegister.Login;
 using MarketplaceApp.Presentation.LoginRegister.Register;

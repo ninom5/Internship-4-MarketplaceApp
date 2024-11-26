@@ -3,6 +3,7 @@ using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.NewFolder;
 using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.Show;
+using MarketplaceApp.Presentation.Utility;
 
 namespace MarketplaceApp.Presentation.PurchaseReturnActions
 {
@@ -25,7 +26,7 @@ namespace MarketplaceApp.Presentation.PurchaseReturnActions
                     isFound = true;
                     ProccessReturn(marketPlace, product, buyer);
 
-                    Console.WriteLine("Kupnja izbrisana s liste transakcija");
+                    
                     break;
                 }
             }
@@ -44,14 +45,21 @@ namespace MarketplaceApp.Presentation.PurchaseReturnActions
                 return;
             }
 
+            if(!ConfirmAction.Confirm(transaction))
+            {
+                Console.WriteLine("odustali ste od vracanja proizvoda");
+                return;
+            }
+
             ProductRepository.SetProductOnSale(transaction.Product);
             if(TransactionRepository.ProcessReturnTransaction(marketPlace, transaction, buyer) == Domain.DomainEnums.Result.Failed)
             {
                 Console.WriteLine("Pogreska prilikom vracanja proizvoda");
                 return;
             }
+            Console.WriteLine("Kupnja izbrisana s liste transakcija");
 
-            Console.WriteLine($"Proizvod uspjesno vracen, vama je vraceno na racun: {Math.Round(transaction.Product.Price * 0.8, 2)}, trenutno stanje: {Math.Round(buyer.Amount, 2)}");
+            Console.WriteLine($"\nProizvod uspjesno vracen, vama je vraceno na racun: {Math.Round(transaction.Product.Price * 0.8, 2)}, trenutno stanje: {Math.Round(buyer.Amount, 2)}");
         }
     }
 }

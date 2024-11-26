@@ -1,10 +1,4 @@
-﻿ using MarketplaceApp.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace MarketplaceApp.Domain.NewFolder
 {
     public class ReadInput
@@ -78,6 +72,21 @@ namespace MarketplaceApp.Domain.NewFolder
                 }
 
                 return productId;
+            }
+        }
+
+        public static bool CheckConfirmationInput()
+        {
+            while (true)
+            {
+                char option = char.ToLower(Console.ReadKey().KeyChar);
+
+                if (option == 'y')
+                    return true;
+                else if (option == 'n')
+                    return false;
+
+                Console.WriteLine("Ne ispravan unos.\n");
             }
         }
     }

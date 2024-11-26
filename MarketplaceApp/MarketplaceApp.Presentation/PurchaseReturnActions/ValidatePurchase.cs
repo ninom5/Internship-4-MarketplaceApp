@@ -7,19 +7,19 @@ namespace MarketplaceApp.Presentation.FinishPurchase
     {
         public void CreateTransaction(Product product, Buyer buyer, Marketplace marketplace, out string message)
         {
-            if (buyer.Amount < product.Price)
-            {
-                message = "Nemate dovoljno para na racunu";
-                return;
-            }
-
             if (product.ProductStatus != Data.Enum.ProductStatus.Na_prodaji)
             {
                 message = "Proizvod je vec kupljen";
                 return;
             }
 
-            if (ConfirmAction.Confirm(product) == false)
+            if (buyer.Amount < product.Price)
+            {
+                message = "Nemate dovoljno para na racunu";
+                return;
+            }
+
+            if (!ConfirmAction.Confirm(product))
             {
                 message = "Odustali ste od kupnje proizvoda";
                 return;

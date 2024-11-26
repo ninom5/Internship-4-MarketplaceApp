@@ -25,25 +25,14 @@ namespace MarketplaceApp.Presentation.Menu
                         Helper.ShowAllProductsOnSale(marketPlace);
                         return;
                     case '2':
-                        if (Helper.ShowAllProductsOnSale(marketPlace) != Result.Success)
-                            return;
-                        Guid id = ReadInput.EnterIdOfProduct();
-                        Product product = Helper.GetProduct(marketPlace, id);
-
-                        if (Helper.CheckIsNull(product))
-                            return;
-
-                        ValidatePurchase validatePurchase = new ValidatePurchase();
-                        validatePurchase.CreateTransaction(product, buyer, marketPlace, out string message);
-
-                        Console.WriteLine(message);
-
+                        StartPurchase.StartPurchaseAction(marketPlace, buyer);
                         return;
                     case '3':
                         ReturnAction action = new ReturnAction();
                         action.ReturnProduct(marketPlace, buyer);
                         return;
                     case '4':  
+
                         return;
                     case '0':
                         return;

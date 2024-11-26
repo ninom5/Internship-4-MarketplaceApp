@@ -1,9 +1,5 @@
 ﻿using MarketplaceApp.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MarketplaceApp.Domain.NewFolder;
 
 namespace MarketplaceApp.Presentation.Utility
 {
@@ -14,14 +10,15 @@ namespace MarketplaceApp.Presentation.Utility
             while (true)
             {
                 Console.WriteLine($"Zelite li kupiti proizvod: {product.Name}. \ny/n");
-                char option = char.ToLower(Console.ReadKey().KeyChar);
-
-                if(option == 'y')
-                    return true;
-                else if(option == 'n')
-                    return false;
-
-                Console.WriteLine("Ne ispravan unos.\n");
+                return ReadInput.CheckConfirmationInput();
+            }
+        }
+        public static bool Confirm(Transaction transaction)
+        {
+            while (true)
+            {
+                Console.WriteLine($"Zelite li vratiti proizvod {transaction.Product.Name}. \ny/n");
+                return ReadInput.CheckConfirmationInput();
             }
         }
     }
