@@ -31,7 +31,7 @@ namespace MarketplaceApp.Presentation.Menu
                         LoginClass.Login(marketPlace);
                         break;
                     case '3':
-                        //ShowAllTransactions(marketPlace);
+                        TransactionMenu.ShowAllTransactions(marketPlace);
                         break;
                     case '0':
                         return;

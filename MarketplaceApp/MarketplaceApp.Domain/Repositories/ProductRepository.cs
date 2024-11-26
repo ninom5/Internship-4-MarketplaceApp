@@ -14,5 +14,10 @@ namespace MarketplaceApp.Domain.Repositories
             return marketplace.ProductList
                 .Where(product => product.ProductStatus == Data.Enum.ProductStatus.Na_prodaji).ToList();
         }
+        public static Product GetProduct(Marketplace marketplace, Guid id)
+        {
+            return marketplace.ProductList
+                .FirstOrDefault(product => product.Id == id);
+        }
     }
 }

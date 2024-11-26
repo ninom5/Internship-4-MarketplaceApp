@@ -22,13 +22,26 @@ namespace MarketplaceApp.Presentation.Menu
                     case '1':
                         ShowAllProductsOnSale(marketPlace);
                         return;
-                    //case '2':
-                    //    ProductFunctions.ShowAllProductsOnSale(marketPlace);
-                    //    ProductFunctions.PickProduct(marketPlace, buyer);
-                    //    return;
-                    //case '3':
-                    //    ProductFunctions.ReturnProduct(marketPlace, buyer);
-                    //    return;
+                    case '2':
+                        ShowAllProductsOnSale(marketPlace);
+                        Guid id = EnterIdOfProduct();
+
+                        Product product = ProductRepository.GetProduct(marketPlace, id);
+                        if(product == null)
+                        {
+                            Console.WriteLine("Nije pronaden proizvod");
+                            return;
+                        }
+
+                        TransactionRepository transactionRepository = new TransactionRepository();
+                        transactionRepository.CreateTransaction(product, buyer, marketPlace, out string message);
+
+                        Console.WriteLine(message);
+
+                        return;
+                        //case '3':
+                        //    ProductFunctions.ReturnProduct(marketPlace, buyer);
+                        //    return;
                 }
             }
         }
@@ -40,10 +53,26 @@ namespace MarketplaceApp.Presentation.Menu
                 Console.WriteLine("Nema dostupnih proizvoda");
                 return;
             }
-            
+
             foreach (var product in listOfProducts)
             {
                 Console.WriteLine($"Naziv proizvoda: {product.Name}, id proizvoda: {product.Id}, opis proizvoda: {product.Description}, kategorija: {product.ProductType}, cijena: {product.Price}");
+            }
+        }
+        private static Guid EnterIdOfProduct()
+        {
+            while (true)
+            {
+                Console.WriteLine("Unesite id proizvoda");
+                var id = Console.ReadLine();
+
+                if (!Guid.TryParse(id, out var productId))
+                {
+                    Console.WriteLine("Ne ispravan unos");
+                    continue;
+                }
+
+                return productId;
             }
         }
     }
