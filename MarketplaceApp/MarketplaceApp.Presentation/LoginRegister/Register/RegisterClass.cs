@@ -1,11 +1,6 @@
 ﻿using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.Repositories;
-using MarketplaceApp.Presentation.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MarketplaceApp.Domain.NewFolder;
 
 namespace MarketplaceApp.Presentation.LoginRegister.Register
 {
@@ -16,7 +11,7 @@ namespace MarketplaceApp.Presentation.LoginRegister.Register
             UserRepository userRepository = new UserRepository();
             var user = GetNameAndEmail(marketplace, userRepository);
 
-            double balance = ReadInput.ReadAmount();
+            double balance = Domain.NewFolder.ReadInput.ReadAmount();
 
             userRepository.AddUser(marketplace, user.name, user.email, balance);
 

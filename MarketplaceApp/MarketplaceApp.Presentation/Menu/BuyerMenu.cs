@@ -1,10 +1,7 @@
 ﻿using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MarketplaceApp.Domain.NewFolder;
+using MarketplaceApp.Presentation.Utility;
 
 namespace MarketplaceApp.Presentation.Menu
 {
@@ -20,18 +17,15 @@ namespace MarketplaceApp.Presentation.Menu
                 switch (option)
                 {
                     case '1':
-                        ShowAllProductsOnSale(marketPlace);
+                        Helper.ShowAllProductsOnSale(marketPlace);
                         return;
                     case '2':
-                        ShowAllProductsOnSale(marketPlace);
-                        Guid id = EnterIdOfProduct();
+                        Helper.ShowAllProductsOnSale(marketPlace);
+                        Guid id = ReadInput.EnterIdOfProduct();
+                        Product product = Helper.GetProduct(marketPlace, id);
 
-                        Product product = ProductRepository.GetProduct(marketPlace, id);
-                        if(product == null)
-                        {
-                            Console.WriteLine("Nije pronaden proizvod");
+                        if (Helper.CheckIsNull(product))
                             return;
-                        }
 
                         TransactionRepository transactionRepository = new TransactionRepository();
                         transactionRepository.CreateTransaction(product, buyer, marketPlace, out string message);
@@ -39,41 +33,16 @@ namespace MarketplaceApp.Presentation.Menu
                         Console.WriteLine(message);
 
                         return;
-                        //case '3':
-                        //    ProductFunctions.ReturnProduct(marketPlace, buyer);
-                        //    return;
+                    case '3':
+                        ProductRepository productRepository = new ProductRepository();
+                        productRepository.ReturnProduct(marketPlace, buyer);
+                        
+                        return;
+                    case '4':
+                        return;
                 }
             }
         }
-        private static void ShowAllProductsOnSale(Marketplace marketPlace)
-        {
-            var listOfProducts = ProductRepository.AllProductsOnSale(marketPlace);
-            if (!listOfProducts.Any())
-            {
-                Console.WriteLine("Nema dostupnih proizvoda");
-                return;
-            }
-
-            foreach (var product in listOfProducts)
-            {
-                Console.WriteLine($"Naziv proizvoda: {product.Name}, id proizvoda: {product.Id}, opis proizvoda: {product.Description}, kategorija: {product.ProductType}, cijena: {product.Price}");
-            }
-        }
-        private static Guid EnterIdOfProduct()
-        {
-            while (true)
-            {
-                Console.WriteLine("Unesite id proizvoda");
-                var id = Console.ReadLine();
-
-                if (!Guid.TryParse(id, out var productId))
-                {
-                    Console.WriteLine("Ne ispravan unos");
-                    continue;
-                }
-
-                return productId;
-            }
-        }
+       
     }
 }

@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MarketplaceApp.Data\MarketplaceApp.Data.csproj" />
     <ProjectReference Include="..\MarketplaceApp.Domain\MarketplaceApp.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Utility\" />
   </ItemGroup>
 
 </Project>

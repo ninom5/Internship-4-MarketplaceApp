@@ -24,7 +24,7 @@ namespace MarketplaceApp.Presentation.Menu
                     $"prodavac: {transaction.Seller.Name}, datum i vrijeme transakcije: {transaction.DateTimeOfTransaction}, kategorija proizvoda: {transaction.ProductType}");
             }
 
-            Console.WriteLine("za povratak na glavni menu pritisnite bilo koju tipku");
+            Console.WriteLine("\nza povratak na glavni menu pritisnite bilo koju tipku");
             Console.ReadKey();
         }
     }

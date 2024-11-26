@@ -16,8 +16,8 @@ namespace MarketplaceApp.Presentation.Menu
         {
             while (true)
             {
-                Thread.Sleep(1000);
-                Console.Clear();
+                //Thread.Sleep(1000);
+                //Console.Clear();
 
                 Console.WriteLine("\n1.Registracija korisnika \n2.Prijava korisnika \n3.Transakcije \n0 - izlaz iz programa");
                 char option = Console.ReadKey().KeyChar;
@@ -25,12 +25,15 @@ namespace MarketplaceApp.Presentation.Menu
                 switch (option)
                 {
                     case '1':
+                        Console.Clear();
                         PickTypeOfUser(marketPlace);
                         break;
                     case '2':
+                        Console.Clear();
                         LoginClass.Login(marketPlace);
                         break;
                     case '3':
+                        Console.Clear();
                         TransactionMenu.ShowAllTransactions(marketPlace);
                         break;
                     case '0':

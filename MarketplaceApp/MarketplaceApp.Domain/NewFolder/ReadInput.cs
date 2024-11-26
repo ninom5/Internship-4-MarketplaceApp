@@ -1,23 +1,21 @@
-﻿using System;
+﻿using MarketplaceApp.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketplaceApp.Presentation.Utility
+namespace MarketplaceApp.Domain.NewFolder
 {
     public class ReadInput
     {
         public static string ReadName()
         {
-            string name = "";
-
-
             while (true)
             {
                 Console.WriteLine("Unesite ime:");
-                name = Console.ReadLine();
-                if (string.IsNullOrEmpty(name))
+                var name = Console.ReadLine();
+                if (string.IsNullOrEmpty(name) || !name.All(char.IsLetter))
                 {
                     Console.WriteLine("Ne ispravan unos");
                     continue;
@@ -31,7 +29,7 @@ namespace MarketplaceApp.Presentation.Utility
             while (true)
             {
                 Console.WriteLine("Unesite email");
-                string email = Console.ReadLine();
+                var email = Console.ReadLine();
 
                 if (IsEmailValid(email))
                 {
@@ -64,6 +62,22 @@ namespace MarketplaceApp.Presentation.Utility
                     continue;
                 }
                 return balance;
+            }
+        }
+        public static Guid EnterIdOfProduct()
+        {
+            while (true)
+            {
+                Console.WriteLine("Unesite id proizvoda");
+                var id = Console.ReadLine();
+
+                if (!Guid.TryParse(id, out var productId))
+                {
+                    Console.WriteLine("Ne ispravan unos");
+                    continue;
+                }
+
+                return productId;
             }
         }
     }
