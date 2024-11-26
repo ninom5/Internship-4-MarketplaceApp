@@ -1,6 +1,5 @@
 ﻿using MarketplaceApp.Data.Enum;
 using MarketplaceApp.Data.Models;
-using System.Transactions;
 
 namespace MarketplaceApp.Domain.Repositories
 {
@@ -23,6 +22,13 @@ namespace MarketplaceApp.Domain.Repositories
                 .Where(buyerFromList => buyerFromList.Buyer == buyer)
                 .Select(product => product.Product).ToList();
         }
-
+        public static List<Product> BuyerProducts(Buyer buyer)
+        {
+            return buyer.FavouriteProductsList;
+        }
+        public static void AddProductToFavourite(Buyer buyer, Product product)
+        {
+            buyer.FavouriteProductsList.Add(product);
+        }
     }
 }

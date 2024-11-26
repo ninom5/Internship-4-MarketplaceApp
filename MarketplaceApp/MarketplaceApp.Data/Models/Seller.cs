@@ -15,7 +15,7 @@ namespace MarketplaceApp.Data.Models
         }
         public override string UserType()
         {
-            return ($"Vrsta korisnika: prodavac(trenutna zarada: {Earnings})");
+            return ($"Vrsta korisnika: prodavac(trenutna zarada: {Math.Round(Earnings, 2)})");
         }
     }
 }

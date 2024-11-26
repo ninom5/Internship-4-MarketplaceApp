@@ -17,7 +17,7 @@ namespace MarketplaceApp.Data.Models
         }
         public override string UserType()
         {
-            return ($"Vrsta korisnika: kupac(trenutni raspolozivi saldo: {Amount})");
+            return ($"Vrsta korisnika: kupac(trenutni raspolozivi saldo: {Math.Round(Amount, 2)})");
         }
     }
 }

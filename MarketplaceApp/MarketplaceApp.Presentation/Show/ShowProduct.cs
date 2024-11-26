@@ -26,20 +26,5 @@ namespace MarketplaceApp.Presentation.Show
 
             return true;
         }
-        private void ShowBuyerProducts(Marketplace marketplace, Buyer buyer, List<Transaction> boughtProducts)
-        {
-            if (!boughtProducts.Any())
-            {
-                Console.WriteLine("\nNema proizvoda, unesite 0 za prekid");
-                return;
-            }
-
-            Console.WriteLine("\n");
-            foreach (var transaction in boughtProducts)
-            {
-                Console.WriteLine($"Id transakcije: {transaction.IdOfTransaction}, naziv proizvoda: {transaction.Product.Name}, id proizvoda: {transaction.Id}, kupac: {transaction.Buyer.Name}, " +
-                    $"prodavac: {transaction.Seller.Name}, datum i vrijeme transakcije: {transaction.DateTimeOfTransaction}, kategorija proizvoda: {transaction.ProductType}");
-            }
-        }
     }
 }

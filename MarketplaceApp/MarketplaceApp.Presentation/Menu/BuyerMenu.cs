@@ -2,6 +2,9 @@
 using MarketplaceApp.Presentation.Utility;
 using MarketplaceApp.Presentation.Actions.PurchaseReturnActions;
 using MarketplaceApp.Presentation.Actions.Favourites;
+using MarketplaceApp.Presentation.Show;
+using System.Collections.Generic;
+using MarketplaceApp.Domain.Repositories;
 
 namespace MarketplaceApp.Presentation.Menu
 {
@@ -14,7 +17,7 @@ namespace MarketplaceApp.Presentation.Menu
             bool isValid = false;
             while (!isValid)
             {
-                Console.WriteLine("1. Pregled svih dostupnih proizvoda \n2.Kupnja proizvoda s ID \n3.Povratak kupljenog proizvoda \n4.Dodavanje proizvoda u listu omiljenih \n5.Pregled povijesti kupljenih proizvoda " +
+                Console.WriteLine("1. Pregled svih dostupnih proizvoda \n2.Kupnja proizvoda s ID \n3.Povratak kupljenog proizvoda \n4.Dodavanje proizvoda u listu omiljenih \n5.Pregled povijesti kupljenih proizvoda" +
                     "\n6.Pregled liste omiljenih proizvoda \n\n0.Povratak na glavni izbornik");
                 char option = Console.ReadKey().KeyChar;
                 switch (option)
@@ -32,6 +35,14 @@ namespace MarketplaceApp.Presentation.Menu
                     case '4':  
                         FavouriteProduct favourite = new FavouriteProduct();
                         favourite.StartNewFavoriteAction(marketPlace, buyer);
+                        return;
+                    case '5':
+                        Console.WriteLine("\nKupljeni proizvodi:\n");
+                        var boughtProducts = ProductRepository.BuyerProducts(marketPlace, buyer);
+                        ShowProduct.PrintProducts(boughtProducts);
+                        return;
+                    case '6':
+                        FavouriteProduct.ShowFavouriteProducts(buyer);
                         return;
                     case '0':
                         return;

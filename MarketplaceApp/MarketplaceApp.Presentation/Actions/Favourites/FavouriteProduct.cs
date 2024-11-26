@@ -2,11 +2,7 @@
 using MarketplaceApp.Domain.NewFolder;
 using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.Show;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MarketplaceApp.Presentation.Utility;
 
 namespace MarketplaceApp.Presentation.Actions.Favourites
 {
@@ -14,20 +10,40 @@ namespace MarketplaceApp.Presentation.Actions.Favourites
     {
         public void StartNewFavoriteAction(Marketplace marketPlace, Buyer buyer)
         {
-            var listOfBoughtProducts = ProductRepository.BuyerProducts(marketPlace, buyer);
-            if (!ShowProduct.PrintProducts(listOfBoughtProducts))
-                return;
+            ShowProduct.PrintProducts(marketPlace.ProductList);
 
-            Console.WriteLine("Unesite id proizvoda kojeg zelite dodati u omiljene");
+            Console.WriteLine("\nUnesite id proizvoda kojeg zelite dodati u omiljene");
             var id = ReadInput.EnterIdOfProduct();
 
-            foreach(var product in listOfBoughtProducts)
+            Product product = Helper.GetProduct(marketPlace, id);
+            if(Helper.CheckIsNull(product))
             {
-                if(product.Id == id)
-                {
-                    buyer.FavouriteProductsList.Add(product);
-                }
+                Console.WriteLine("Proizvod nije pronaden");
+                return;
             }
+
+            if (buyer.FavouriteProductsList.Contains(product))
+            {
+                Console.WriteLine("\nProizvod je vec u omiljenim proizvodima\n");
+                return;
+            }
+
+            ProductRepository.AddProductToFavourite(buyer, product);
+            Console.WriteLine("Proizvod uspjesno dodan u omiljene");
+        }
+
+        public static void ShowFavouriteProducts(Buyer buyer)
+        {
+            var listOfFavourites = ProductRepository.BuyerProducts(buyer);
+
+            if(!listOfFavourites.Any())
+            {
+                Console.WriteLine("Nema omiljenih proizvoda");
+                return;
+            }
+
+            Console.WriteLine("\nOmiljeni proizvodi:");
+            ShowProduct.PrintProducts(listOfFavourites);
         }
     }
 }

@@ -44,7 +44,11 @@ namespace MarketplaceApp.Presentation.Actions.LoginRegister.Login
                 BuyerMenu.ShowBuyerOptions(buyer, marketPlace);
             }
             else
-                Console.WriteLine("prodavac");
+            {
+                Console.Clear();
+                Console.WriteLine($"Dobro dosli, {user.Name}, {user.UserType()}");
+                
+            }
         }
     }
 }
