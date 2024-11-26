@@ -1,9 +1,4 @@
 ﻿using MarketplaceApp.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarketplaceApp.Data.Seeds
 {
@@ -28,6 +23,9 @@ namespace MarketplaceApp.Data.Seeds
 
             Buyer buyer1 = new Buyer("N", "n@n.n", 700);
             marketplace.UserList.Add(buyer1);
+
+            Buyer buyer2 = new Buyer("A", "a@a.a", 10000);
+            marketplace.UserList.Add(buyer2);
         }
     }
 }

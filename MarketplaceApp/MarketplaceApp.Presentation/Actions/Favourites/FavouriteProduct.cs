@@ -1,4 +1,5 @@
-﻿using MarketplaceApp.Data.Models;
+﻿using MarketplaceApp.Data.Enum;
+using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.NewFolder;
 using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.Show;
@@ -10,13 +11,14 @@ namespace MarketplaceApp.Presentation.Actions.Favourites
     {
         public void StartNewFavoriteAction(Marketplace marketPlace, Buyer buyer)
         {
-            ShowProduct.PrintProducts(marketPlace.ProductList);
+            Helper.ShowAllProductsOnSale(marketPlace);
+            //ShowProduct.PrintProducts(marketPlace.ProductList);
 
             Console.WriteLine("\nUnesite id proizvoda kojeg zelite dodati u omiljene");
             var id = ReadInput.EnterIdOfProduct();
 
             Product product = Helper.GetProduct(marketPlace, id);
-            if(Helper.CheckIsNull(product))
+            if(Helper.CheckIsNull(product) || product.ProductStatus == ProductStatus.Prodano)
             {
                 Console.WriteLine("Proizvod nije pronaden");
                 return;
