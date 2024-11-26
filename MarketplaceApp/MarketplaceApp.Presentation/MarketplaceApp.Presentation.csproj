@@ -11,8 +11,4 @@
     <ProjectReference Include="..\MarketplaceApp.Domain\MarketplaceApp.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Utility\" />
-  </ItemGroup>
-
 </Project>

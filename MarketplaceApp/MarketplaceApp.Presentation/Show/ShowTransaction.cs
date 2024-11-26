@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketplaceApp.Presentation.Menu
+namespace MarketplaceApp.Presentation.Show
 {
-    public class TransactionMenu
+    public class ShowTransaction
     {
         public static void ShowAllTransactions(Marketplace marketplace)
         {
-            var list = TransactionRepository.GetAllTransactions(marketplace);
+            var list = GetAllTransactions(marketplace);
             if (!list.Any())
             {
                 Console.WriteLine("Nema transakcija");
@@ -26,6 +26,10 @@ namespace MarketplaceApp.Presentation.Menu
 
             Console.WriteLine("\nza povratak na glavni menu pritisnite bilo koju tipku");
             Console.ReadKey();
+        }
+        private static List<Transaction> GetAllTransactions(Marketplace marketplace)
+        {
+            return marketplace.TransactionsList;
         }
     }
 }

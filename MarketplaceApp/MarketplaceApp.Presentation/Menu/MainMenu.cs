@@ -7,6 +7,7 @@ using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.LoginRegister.Login;
 using MarketplaceApp.Presentation.LoginRegister.Register;
+using MarketplaceApp.Presentation.Show;
 
 namespace MarketplaceApp.Presentation.Menu
 {
@@ -34,7 +35,7 @@ namespace MarketplaceApp.Presentation.Menu
                         break;
                     case '3':
                         Console.Clear();
-                        TransactionMenu.ShowAllTransactions(marketPlace);
+                        ShowTransaction.ShowAllTransactions(marketPlace);
                         break;
                     case '0':
                         return;

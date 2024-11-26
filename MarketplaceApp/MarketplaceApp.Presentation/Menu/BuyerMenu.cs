@@ -2,6 +2,9 @@
 using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Domain.NewFolder;
 using MarketplaceApp.Presentation.Utility;
+using MarketplaceApp.Presentation.FinishPurchase;
+using MarketplaceApp.Domain.DomainEnums;
+using MarketplaceApp.Presentation.PurchaseReturnActions;
 
 namespace MarketplaceApp.Presentation.Menu
 {
@@ -20,25 +23,25 @@ namespace MarketplaceApp.Presentation.Menu
                         Helper.ShowAllProductsOnSale(marketPlace);
                         return;
                     case '2':
-                        Helper.ShowAllProductsOnSale(marketPlace);
+                        if (Helper.ShowAllProductsOnSale(marketPlace) != Result.Success)
+                            return;
                         Guid id = ReadInput.EnterIdOfProduct();
                         Product product = Helper.GetProduct(marketPlace, id);
 
                         if (Helper.CheckIsNull(product))
                             return;
 
-                        TransactionRepository transactionRepository = new TransactionRepository();
-                        transactionRepository.CreateTransaction(product, buyer, marketPlace, out string message);
+                        ValidatePurchase validatePurchase = new ValidatePurchase();
+                        validatePurchase.CreateTransaction(product, buyer, marketPlace, out string message);
 
                         Console.WriteLine(message);
 
                         return;
                     case '3':
-                        ProductRepository productRepository = new ProductRepository();
-                        productRepository.ReturnProduct(marketPlace, buyer);
-                        
+                        ReturnAction action = new ReturnAction();
+                        action.ReturnProduct(marketPlace, buyer);
                         return;
-                    case '4':
+                    case '4':  
                         return;
                 }
             }

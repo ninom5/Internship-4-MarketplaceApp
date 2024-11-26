@@ -1,5 +1,7 @@
 ﻿using MarketplaceApp.Data.Models;
+using MarketplaceApp.Domain.DomainEnums;
 using MarketplaceApp.Domain.Repositories;
+using MarketplaceApp.Presentation.Show;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,25 +12,27 @@ namespace MarketplaceApp.Presentation.Utility
 {
     public class Helper
     {
-        public static void ShowAllProductsOnSale(Marketplace marketPlace)
+        public static Result ShowAllProductsOnSale(Marketplace marketPlace)
         {
             var listOfProducts = ProductRepository.AllProductsOnSale(marketPlace);
             if (!listOfProducts.Any())
             {
-                Console.WriteLine("Nema dostupnih proizvoda");
-                return;
+                Console.WriteLine("\nNema dostupnih proizvoda");
+                return Result.Failed;
             }
 
-            ProductRepository.PrintProducts(listOfProducts);
+            ShowProduct.PrintProducts(listOfProducts);
+            return Result.Success;
         }
         public static Product GetProduct(Marketplace marketPlace, Guid id)
         {
-            Product product = ProductRepository.GetProduct(marketPlace, id);
+            Product product = marketPlace.ProductList.FirstOrDefault(product => product.Id == id);
             if (product == null)
             {
                 Console.WriteLine("Nije pronaden proizvod");
                 return null;
             }
+
             return product;
         }
 

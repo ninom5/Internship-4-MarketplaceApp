@@ -11,7 +11,7 @@ namespace MarketplaceApp.Presentation.LoginRegister.Register
             UserRepository userRepository = new UserRepository();
             var user = GetNameAndEmail(marketplace, userRepository);
 
-            double balance = Domain.NewFolder.ReadInput.ReadAmount();
+            double balance = ReadInput.ReadAmount();
 
             userRepository.AddUser(marketplace, user.name, user.email, balance);
 
