@@ -12,10 +12,12 @@ namespace MarketplaceApp.Presentation.Menu
     {
         public static void ShowBuyerOptions(Buyer buyer, Marketplace marketPlace)
         {
+            Console.Clear();
             bool isValid = false;
             while (!isValid)
             {
-                Console.WriteLine("1. Pregled svih dostupnih proizvoda \n2.Kupnja proizvoda s ID \n3.Povratak kupljenog proizvoda \n4.Dodavanje proizvoda u listu omiljenih \n5.Pregled povijesti kupljenih dogadaja \n6.Pregled liste omiljenih proizvoda");
+                Console.WriteLine("1. Pregled svih dostupnih proizvoda \n2.Kupnja proizvoda s ID \n3.Povratak kupljenog proizvoda \n4.Dodavanje proizvoda u listu omiljenih \n5.Pregled povijesti kupljenih dogadaja " +
+                    "\n6.Pregled liste omiljenih proizvoda \n\n0.Povratak na glavni izbornik");
                 char option = Console.ReadKey().KeyChar;
                 switch (option)
                 {
@@ -43,6 +45,11 @@ namespace MarketplaceApp.Presentation.Menu
                         return;
                     case '4':  
                         return;
+                    case '0':
+                        return;
+                    default:
+                        Console.WriteLine("\nne ispravan unos");
+                        break;
                 }
             }
         }

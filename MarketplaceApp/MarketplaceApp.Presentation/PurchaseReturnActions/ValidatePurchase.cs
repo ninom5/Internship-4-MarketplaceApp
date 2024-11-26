@@ -1,6 +1,6 @@
 ﻿using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.Repositories;
-
+using MarketplaceApp.Presentation.Utility;
 namespace MarketplaceApp.Presentation.FinishPurchase
 {
     public class ValidatePurchase
@@ -19,7 +19,13 @@ namespace MarketplaceApp.Presentation.FinishPurchase
                 return;
             }
 
-            if(TransactionRepository.FinishTransaction(marketplace, product, buyer) != Domain.DomainEnums.Result.Success)
+            if (ConfirmAction.Confirm(product) == false)
+            {
+                message = "Odustali ste od kupnje proizvoda";
+                return;
+            }
+
+            if (TransactionRepository.FinishTransaction(marketplace, product, buyer) != Domain.DomainEnums.Result.Success)
             {
                 message = "pogreska pri izvrsavanju kupnje";
                 return;

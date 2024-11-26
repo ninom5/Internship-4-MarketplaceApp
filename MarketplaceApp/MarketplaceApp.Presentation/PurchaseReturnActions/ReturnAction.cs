@@ -10,11 +10,11 @@ namespace MarketplaceApp.Presentation.PurchaseReturnActions
     {
         public void ReturnProduct(Marketplace marketPlace, Buyer buyer)
         {
-            var listOfBoughtProducts = BuyerProducts(marketPlace, buyer);
+            var listOfBoughtProducts = ProductRepository.BuyerProducts(marketPlace, buyer);
             if(!ShowProduct.PrintProducts(listOfBoughtProducts))
                 return;
 
-            Console.WriteLine("Uneiste id proizvoda kojeg zelite vratiti");
+            Console.WriteLine("Unesite id proizvoda kojeg zelite vratiti");
             var id = ReadInput.EnterIdOfProduct();
 
             bool isFound = false;
@@ -32,17 +32,11 @@ namespace MarketplaceApp.Presentation.PurchaseReturnActions
             if (!isFound)
                 Console.WriteLine("Proizvod nije pronaden");
         }
-        private List<Product> BuyerProducts(Marketplace marketPlace, Buyer buyer)
-        {
-            return marketPlace.TransactionsList
-                .Where(buyerFromList => buyerFromList.Buyer == buyer)
-                .Select(product => product.Product).ToList();
-        }
+        
         
         private static void ProccessReturn(Marketplace marketPlace, Product product, Buyer buyer)
         {
-            var transaction = marketPlace.TransactionsList
-                .FirstOrDefault(buy => buy.Buyer == buyer && buy.Product.Id == product.Id);
+            var transaction = TransactionRepository.FindTransaction(marketPlace, buyer, product);
 
             if (transaction == null)
             { 

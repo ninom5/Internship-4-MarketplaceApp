@@ -17,7 +17,12 @@ namespace MarketplaceApp.Domain.Repositories
                 .Where(product => product.ProductStatus == Data.Enum.ProductStatus.Na_prodaji).ToList();
         }
 
-
+        public static List<Product> BuyerProducts(Marketplace marketPlace, Buyer buyer)
+        {
+            return marketPlace.TransactionsList
+                .Where(buyerFromList => buyerFromList.Buyer == buyer)
+                .Select(product => product.Product).ToList();
+        }
 
     }
 }

@@ -52,7 +52,7 @@ namespace MarketplaceApp.Presentation.Menu
             bool isValid = false;
             while (!isValid)
             {
-                Console.WriteLine("1. Registracija kupca \n2. Registracija prodavaca");
+                Console.WriteLine("1. Registracija kupca \n2. Registracija prodavaca \n0. Povratak na glavni izbornik");
                 char userOption = Console.ReadKey().KeyChar;
 
                 switch (userOption)
@@ -62,6 +62,8 @@ namespace MarketplaceApp.Presentation.Menu
                         return;
                     case '2':
                         register.RegisterSeller(marketPlace);
+                        return;
+                    case '0':
                         return;
                     default:
                         Console.WriteLine("ne ispravan unos");

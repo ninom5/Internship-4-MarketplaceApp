@@ -47,5 +47,10 @@ namespace MarketplaceApp.Domain.Repositories
             }
             return Result.Success;
         }
+        public static Data.Models.Transaction FindTransaction(Marketplace marketPlace, Buyer buyer, Product product)
+        {
+            return marketPlace.TransactionsList
+                .FirstOrDefault(buy => buy.Buyer == buyer && buy.Product.Id == product.Id);
+        }
     }
 }
