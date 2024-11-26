@@ -2,7 +2,7 @@
 using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Domain.NewFolder;
 
-namespace MarketplaceApp.Presentation.LoginRegister.Register
+namespace MarketplaceApp.Presentation.Actions.LoginRegister.Register
 {
     public class RegisterClass
     {

@@ -1,7 +1,6 @@
 ﻿using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.DomainEnums;
 using MarketplaceApp.Domain.NewFolder;
-using MarketplaceApp.Presentation.FinishPurchase;
 using MarketplaceApp.Presentation.Utility;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketplaceApp.Presentation.PurchaseReturnActions
+namespace MarketplaceApp.Presentation.Actions.PurchaseReturnActions
 {
     public class StartPurchase
     {

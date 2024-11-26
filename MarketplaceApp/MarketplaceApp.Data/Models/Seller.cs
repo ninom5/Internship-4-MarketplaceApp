@@ -13,5 +13,9 @@ namespace MarketplaceApp.Data.Models
         {
             Earnings = 0;
         }
+        public override string UserType()
+        {
+            return ($"Vrsta korisnika: prodavac(trenutna zarada: {Earnings})");
+        }
     }
 }

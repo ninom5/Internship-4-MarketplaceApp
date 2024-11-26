@@ -5,14 +5,14 @@ using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.Show;
 using MarketplaceApp.Presentation.Utility;
 
-namespace MarketplaceApp.Presentation.PurchaseReturnActions
+namespace MarketplaceApp.Presentation.Actions.PurchaseReturnActions
 {
     public class ReturnAction
     {
         public void ReturnProduct(Marketplace marketPlace, Buyer buyer)
         {
             var listOfBoughtProducts = ProductRepository.BuyerProducts(marketPlace, buyer);
-            if(!ShowProduct.PrintProducts(listOfBoughtProducts))
+            if (!ShowProduct.PrintProducts(listOfBoughtProducts))
                 return;
 
             Console.WriteLine("Unesite id proizvoda kojeg zelite vratiti");
@@ -26,33 +26,32 @@ namespace MarketplaceApp.Presentation.PurchaseReturnActions
                     isFound = true;
                     ProccessReturn(marketPlace, product, buyer);
 
-                    
+
                     break;
                 }
             }
             if (!isFound)
                 Console.WriteLine("Proizvod nije pronaden");
         }
-        
-        
+
         private static void ProccessReturn(Marketplace marketPlace, Product product, Buyer buyer)
         {
             var transaction = TransactionRepository.FindTransaction(marketPlace, buyer, product);
 
             if (transaction == null)
-            { 
-                Console.WriteLine("ne postoji transakcija za kupljeni proizvod"); 
+            {
+                Console.WriteLine("ne postoji transakcija za kupljeni proizvod");
                 return;
             }
 
-            if(!ConfirmAction.Confirm(transaction))
+            if (!ConfirmAction.Confirm(transaction))
             {
                 Console.WriteLine("odustali ste od vracanja proizvoda");
                 return;
             }
 
             ProductRepository.SetProductOnSale(transaction.Product);
-            if(TransactionRepository.ProcessReturnTransaction(marketPlace, transaction, buyer) == Domain.DomainEnums.Result.Failed)
+            if (TransactionRepository.ProcessReturnTransaction(marketPlace, transaction, buyer) == Domain.DomainEnums.Result.Failed)
             {
                 Console.WriteLine("Pogreska prilikom vracanja proizvoda");
                 return;

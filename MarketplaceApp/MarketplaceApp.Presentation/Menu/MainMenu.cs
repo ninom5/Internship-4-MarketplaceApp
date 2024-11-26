@@ -1,7 +1,7 @@
 ﻿using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.Repositories;
-using MarketplaceApp.Presentation.LoginRegister.Login;
-using MarketplaceApp.Presentation.LoginRegister.Register;
+using MarketplaceApp.Presentation.Actions.LoginRegister.Login;
+using MarketplaceApp.Presentation.Actions.LoginRegister.Register;
 using MarketplaceApp.Presentation.Show;
 
 namespace MarketplaceApp.Presentation.Menu

@@ -19,5 +19,7 @@ namespace MarketplaceApp.Data.Models
             Name = name;
             Email = email;
         }
+
+        public abstract string UserType();
     }
 }

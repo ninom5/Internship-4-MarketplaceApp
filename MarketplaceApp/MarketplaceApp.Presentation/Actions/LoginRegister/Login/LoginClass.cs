@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketplaceApp.Presentation.LoginRegister.Login
+namespace MarketplaceApp.Presentation.Actions.LoginRegister.Login
 {
     public class LoginClass
     {
@@ -38,7 +38,11 @@ namespace MarketplaceApp.Presentation.LoginRegister.Login
             }
 
             if (user is Buyer buyer)
+            {
+                Console.Clear();
+                Console.WriteLine($"Dobro dosli, {user.Name}, {user.UserType()}");
                 BuyerMenu.ShowBuyerOptions(buyer, marketPlace);
+            }
             else
                 Console.WriteLine("prodavac");
         }

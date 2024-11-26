@@ -50,7 +50,7 @@ namespace MarketplaceApp.Domain.Repositories
         public static Data.Models.Transaction FindTransaction(Marketplace marketPlace, Buyer buyer, Product product)
         {
             return marketPlace.TransactionsList
-                .FirstOrDefault(buy => buy.Buyer == buyer && buy.Product.Id == product.Id);
+                .FirstOrDefault(buy => buy.Buyer == buyer && buy.Product.Id == product.Id); 
         }
     }
 }
