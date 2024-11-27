@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketplaceApp.Presentation.Actions.PurchaseReturnActions
+namespace MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActions
 {
     public class StartPurchase
     {

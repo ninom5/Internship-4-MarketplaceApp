@@ -120,6 +120,23 @@ namespace MarketplaceApp.Domain.NewFolder
                 return price;
             }
         }
+        public static DateTime ReadDate(string messageDate)
+        {
+            Console.WriteLine($"Unesite {messageDate} datum(format: dd/MM/yyyy)");
+            DateTime userDate;
+
+            while (true)
+            {
+                var date = Console.ReadLine();
+                if(!DateTime.TryParseExact(date, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out userDate))
+                {
+                    Console.WriteLine("Ne ispravan format unesite opet");
+                    continue;
+                }
+
+                return userDate;
+            }
+        }
         public static Category ReadCategory()
         {
             while(true)

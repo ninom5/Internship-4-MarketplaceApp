@@ -1,10 +1,10 @@
 ﻿using MarketplaceApp.Data.Models;
 using MarketplaceApp.Presentation.Utility;
-using MarketplaceApp.Presentation.Actions.PurchaseReturnActions;
-using MarketplaceApp.Presentation.Actions.Favourites;
 using MarketplaceApp.Presentation.Show;
 using System.Collections.Generic;
 using MarketplaceApp.Domain.Repositories;
+using MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActions;
+using MarketplaceApp.Presentation.Actions.ProductActions.Favourites;
 
 namespace MarketplaceApp.Presentation.Menu
 {

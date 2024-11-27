@@ -5,7 +5,7 @@ using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.Show;
 using MarketplaceApp.Presentation.Utility;
 
-namespace MarketplaceApp.Presentation.Actions.PurchaseReturnActions
+namespace MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActions
 {
     public class ReturnAction
     {

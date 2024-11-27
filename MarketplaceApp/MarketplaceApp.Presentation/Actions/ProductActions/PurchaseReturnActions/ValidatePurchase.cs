@@ -1,7 +1,7 @@
 ﻿using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.Utility;
-namespace MarketplaceApp.Presentation.Actions.PurchaseReturnActions
+namespace MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActions
 {
     public class ValidatePurchase
     {

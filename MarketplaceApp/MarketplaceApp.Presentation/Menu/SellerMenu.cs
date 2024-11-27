@@ -2,7 +2,8 @@
 using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.NewFolder;
 using MarketplaceApp.Domain.Repositories;
-using MarketplaceApp.Presentation.Actions.NewProduct;
+using MarketplaceApp.Presentation.Actions.NewFolder;
+using MarketplaceApp.Presentation.Actions.ProductActions.NewProduct;
 using MarketplaceApp.Presentation.Show;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,10 @@ namespace MarketplaceApp.Presentation.Menu
                         Category category = ReadInput.ReadCategory();
                         var sellerSoldProductsCategorically = repository.SellerProducts(marketPlace, seller, category);
                         ShowProduct.PrintProducts(sellerSoldProductsCategorically);
+                        return;
+                    case '5':
+                        Earnings earnings = new Earnings();
+                        earnings.CalculateEarnings(marketPlace, seller);
                         return;
                     default:
                         Console.WriteLine("ne ispravan unos");

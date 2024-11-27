@@ -5,7 +5,7 @@ using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.Show;
 using MarketplaceApp.Presentation.Utility;
 
-namespace MarketplaceApp.Presentation.Actions.Favourites
+namespace MarketplaceApp.Presentation.Actions.ProductActions.Favourites
 {
     public class FavouriteProduct
     {
@@ -18,7 +18,7 @@ namespace MarketplaceApp.Presentation.Actions.Favourites
             var id = ReadInput.ReadIdOfProduct();
 
             Product product = Helper.GetProduct(marketPlace, id);
-            if(product == null || product.ProductStatus == ProductStatus.Prodano)
+            if (product == null || product.ProductStatus == ProductStatus.Prodano)
             {
                 Console.WriteLine("Proizvod nije pronaden");
                 return;
@@ -30,7 +30,7 @@ namespace MarketplaceApp.Presentation.Actions.Favourites
                 return;
             }
 
-            if(!ConfirmAction.Confirm("Zelite li dodati proizvod u omiljene"))
+            if (!ConfirmAction.Confirm("Zelite li dodati proizvod u omiljene"))
             {
                 Console.WriteLine("Odustali ste od dodavanja proizvoda u omiljene");
                 return;
@@ -45,7 +45,7 @@ namespace MarketplaceApp.Presentation.Actions.Favourites
         {
             var listOfFavourites = ProductRepository.BuyerProducts(buyer);
 
-            if(!listOfFavourites.Any())
+            if (!listOfFavourites.Any())
             {
                 Console.WriteLine("Nema omiljenih proizvoda");
                 return;

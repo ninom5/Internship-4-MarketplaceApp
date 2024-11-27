@@ -3,6 +3,7 @@ using MarketplaceApp.Domain.DomainEnums;
 using System;
 using System.Diagnostics;
 using System.Transactions;
+using Transaction = MarketplaceApp.Data.Models.Transaction;
 
 namespace MarketplaceApp.Domain.Repositories
 {
@@ -38,6 +39,12 @@ namespace MarketplaceApp.Domain.Repositories
         {
             return marketPlace.TransactionsList
                 .FirstOrDefault(buy => buy.Buyer == buyer && buy.Product.Id == product.Id); 
+        }
+        public List<Transaction> GetTransactionsWithinDateRange(Marketplace marketplace, DateTime startDate, DateTime endDate)
+        {
+            return marketplace.TransactionsList
+                .Where(transaction => transaction.DateTimeOfTransaction >= startDate && transaction.DateTimeOfTransaction <= endDate)
+                .ToList();
         }
     }
 }
