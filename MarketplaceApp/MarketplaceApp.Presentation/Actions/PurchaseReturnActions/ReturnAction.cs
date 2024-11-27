@@ -11,12 +11,12 @@ namespace MarketplaceApp.Presentation.Actions.PurchaseReturnActions
     {
         public void ReturnProduct(Marketplace marketPlace, Buyer buyer)
         {
-            var listOfBoughtProducts = ProductRepository.BuyerProducts(marketPlace, buyer);
+            var listOfBoughtProducts = ProductRepository.BuyerProducts(buyer, marketPlace);
             if (!ShowProduct.PrintProducts(listOfBoughtProducts))
                 return;
 
             Console.WriteLine("Unesite id proizvoda kojeg zelite vratiti");
-            var id = ReadInput.EnterIdOfProduct();
+            var id = ReadInput.ReadIdOfProduct();
 
             bool isFound = false;
             foreach (var product in listOfBoughtProducts)
@@ -25,7 +25,6 @@ namespace MarketplaceApp.Presentation.Actions.PurchaseReturnActions
                 {
                     isFound = true;
                     ProccessReturn(marketPlace, product, buyer);
-
 
                     break;
                 }
@@ -36,6 +35,8 @@ namespace MarketplaceApp.Presentation.Actions.PurchaseReturnActions
 
         private static void ProccessReturn(Marketplace marketPlace, Product product, Buyer buyer)
         {
+            ProductRepository productRepository = new ProductRepository();
+
             var transaction = TransactionRepository.FindTransaction(marketPlace, buyer, product);
 
             if (transaction == null)
@@ -44,13 +45,13 @@ namespace MarketplaceApp.Presentation.Actions.PurchaseReturnActions
                 return;
             }
 
-            if (!ConfirmAction.Confirm(transaction))
+            if (!ConfirmAction.Confirm($"Zelite li vratiti proizvod: {transaction.Product.Name}"))
             {
                 Console.WriteLine("odustali ste od vracanja proizvoda");
                 return;
             }
 
-            ProductRepository.SetProductOnSale(transaction.Product);
+            productRepository.SetProductOnSale(transaction.Product);
             if (TransactionRepository.ProcessReturnTransaction(marketPlace, transaction, buyer) == Domain.DomainEnums.Result.Failed)
             {
                 Console.WriteLine("Pogreska prilikom vracanja proizvoda");

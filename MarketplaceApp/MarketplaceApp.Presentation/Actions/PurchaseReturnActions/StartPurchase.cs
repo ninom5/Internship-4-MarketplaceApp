@@ -14,12 +14,13 @@ namespace MarketplaceApp.Presentation.Actions.PurchaseReturnActions
     {
         public static void StartPurchaseAction(Marketplace marketPlace, Buyer buyer)
         {
-            if (Helper.ShowAllProductsOnSale(marketPlace) != Result.Success)
+            if (Helper.AllProductsOnSale(marketPlace) != Result.Success)
                 return;
-            Guid id = ReadInput.EnterIdOfProduct();
+
+            Guid id = ReadInput.ReadIdOfProduct();
             Product product = Helper.GetProduct(marketPlace, id);
-            if (Helper.CheckIsNull(product))
-                return;
+
+            if (product == null) return;
 
             ValidatePurchase validatePurchase = new ValidatePurchase();
             validatePurchase.CreateTransaction(product, buyer, marketPlace, out string message);

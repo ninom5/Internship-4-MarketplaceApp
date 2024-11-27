@@ -23,7 +23,7 @@ namespace MarketplaceApp.Presentation.Menu
                 switch (option)
                 {
                     case '1':
-                        Helper.ShowAllProductsOnSale(marketPlace);
+                        Helper.AllProductsOnSale(marketPlace);
                         return;
                     case '2':
                         StartPurchase.StartPurchaseAction(marketPlace, buyer);
@@ -38,7 +38,7 @@ namespace MarketplaceApp.Presentation.Menu
                         return;
                     case '5':
                         Console.WriteLine("\nKupljeni proizvodi:\n");
-                        var boughtProducts = ProductRepository.BuyerProducts(marketPlace, buyer);
+                        var boughtProducts = ProductRepository.BuyerProducts(buyer, marketPlace);
                         ShowProduct.PrintProducts(boughtProducts);
                         return;
                     case '6':

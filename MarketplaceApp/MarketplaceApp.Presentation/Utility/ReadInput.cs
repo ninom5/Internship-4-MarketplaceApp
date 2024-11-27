@@ -1,4 +1,6 @@
 ﻿
+using MarketplaceApp.Data.Enum;
+
 namespace MarketplaceApp.Domain.NewFolder
 {
     public class ReadInput
@@ -58,7 +60,7 @@ namespace MarketplaceApp.Domain.NewFolder
                 return balance;
             }
         }
-        public static Guid EnterIdOfProduct()
+        public static Guid ReadIdOfProduct()
         {
             while (true)
             {
@@ -116,6 +118,29 @@ namespace MarketplaceApp.Domain.NewFolder
                     continue;
                 }
                 return price;
+            }
+        }
+        public static Category ReadCategory()
+        {
+            while(true)
+            {
+                Console.WriteLine("Odaberite kategoriju\n\t 1.Elektronika \n\t 2.Odjeca \n\t 3.Knjige \n\t 4.Obuca");
+                char option = Console.ReadKey().KeyChar;
+
+                switch(option)
+                {
+                    case '1':
+                        return Category.Elektronika;
+                    case '2':
+                        return Category.Odjeca;
+                    case '3':
+                        return Category.Knjige;
+                    case '4':
+                        return Category.Obuća;
+                    default:
+                        Console.WriteLine("Ne ispravan unos");
+                        break;
+                }
             }
         }
         public static bool CheckConfirmationInput()

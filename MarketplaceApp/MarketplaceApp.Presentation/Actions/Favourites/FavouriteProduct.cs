@@ -11,14 +11,14 @@ namespace MarketplaceApp.Presentation.Actions.Favourites
     {
         public void StartNewFavoriteAction(Marketplace marketPlace, Buyer buyer)
         {
-            Helper.ShowAllProductsOnSale(marketPlace);
+            Helper.AllProductsOnSale(marketPlace);
             //ShowProduct.PrintProducts(marketPlace.ProductList);
 
             Console.WriteLine("\nUnesite id proizvoda kojeg zelite dodati u omiljene");
-            var id = ReadInput.EnterIdOfProduct();
+            var id = ReadInput.ReadIdOfProduct();
 
             Product product = Helper.GetProduct(marketPlace, id);
-            if(Helper.CheckIsNull(product) || product.ProductStatus == ProductStatus.Prodano)
+            if(product == null || product.ProductStatus == ProductStatus.Prodano)
             {
                 Console.WriteLine("Proizvod nije pronaden");
                 return;
@@ -29,6 +29,13 @@ namespace MarketplaceApp.Presentation.Actions.Favourites
                 Console.WriteLine("\nProizvod je vec u omiljenim proizvodima\n");
                 return;
             }
+
+            if(!ConfirmAction.Confirm("Zelite li dodati proizvod u omiljene"))
+            {
+                Console.WriteLine("Odustali ste od dodavanja proizvoda u omiljene");
+                return;
+            }
+
 
             ProductRepository.AddProductToFavourite(buyer, product);
             Console.WriteLine("Proizvod uspjesno dodan u omiljene");
