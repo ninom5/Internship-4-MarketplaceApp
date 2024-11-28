@@ -20,7 +20,7 @@ namespace MarketplaceApp.Presentation.Menu
             ProductRepository repository = new ProductRepository();
             while (true)
             {
-                Console.WriteLine("1.Dodavanje proizvoda \n2.Pregled svih proizvoda odabranog prodavaca \n3.Pregled ukupne zarade od prodaje \n4.Pregled prodanih proizvoda po kategoriji " +
+                Console.WriteLine("\n1.Dodavanje proizvoda \n2.Pregled svih proizvoda odabranog prodavaca \n3.Pregled ukupne zarade od prodaje \n4.Pregled prodanih proizvoda po kategoriji " +
                     "\n5.Pregled zarade u odredenom vrem razdoblju \n0.Glavni izbornik");
                 char option = Console.ReadKey().KeyChar;
                 switch (option)
@@ -28,22 +28,24 @@ namespace MarketplaceApp.Presentation.Menu
                     case '1':
                         CreateProductAction createProductAction = new CreateProductAction();
                         createProductAction.GetProductData(marketPlace, seller);
-                        return;
+                        break;
                     case '2':
                         var listOfSellerProducts = repository.SellerProducts(marketPlace, seller);
                         ShowProduct.PrintProducts(listOfSellerProducts);
-                        return;
+                        break;
                     case '3':
                         Console.WriteLine($"Trenutna vasa zarada: {Math.Round(seller.Earnings, 2)}");
-                        return;
+                        break;
                     case '4':
                         Category category = ReadInput.ReadCategory();
                         var sellerSoldProductsCategorically = repository.SellerProducts(marketPlace, seller, category);
                         ShowProduct.PrintProducts(sellerSoldProductsCategorically);
-                        return;
+                        break;
                     case '5':
                         Earnings earnings = new Earnings();
                         earnings.CalculateEarnings(marketPlace, seller);
+                        break;
+                    case '0':
                         return;
                     default:
                         Console.WriteLine("ne ispravan unos");

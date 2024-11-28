@@ -12,12 +12,14 @@ namespace MarketplaceApp.Data.Models
         public List<User> UserList { get; set; } = new List<User>();
         public List<Product> ProductList { get; set; } = new List<Product> { };
         public List<Transaction> TransactionsList { get; set; } = new List<Transaction> { };
+        public List<ReturnedTransaction> ReturnedProductsTransactionList { get; set; } = new List<ReturnedTransaction> { };
         public double MarketPlaceBalance { get; set; }
         public Marketplace()
         {
             UserList = new List<User>();
             ProductList = new List<Product>();
             TransactionsList = new List<Transaction>();
+            ReturnedProductsTransactionList = new List<ReturnedTransaction>();
             MarketPlaceBalance = 0.0;
         }
     }

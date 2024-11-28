@@ -19,7 +19,7 @@ namespace MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActio
                 return;
             }
 
-            if (!ConfirmAction.Confirm($"Zelite li kupiti proizvod {product.Name}"))
+            if (!ConfirmAction.Confirm($"Zelite li kupiti proizvod {product.Name} y/n?"))
             {
                 message = "Odustali ste od kupnje proizvoda";
                 return;

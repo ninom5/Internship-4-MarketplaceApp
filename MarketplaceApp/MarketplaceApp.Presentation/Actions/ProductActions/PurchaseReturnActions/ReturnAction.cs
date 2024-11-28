@@ -45,18 +45,20 @@ namespace MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActio
                 return;
             }
 
-            if (!ConfirmAction.Confirm($"Zelite li vratiti proizvod: {transaction.Product.Name}"))
+            if (!ConfirmAction.Confirm($"Zelite li vratiti proizvod: {transaction.Product.Name} y/n"))
             {
                 Console.WriteLine("odustali ste od vracanja proizvoda");
                 return;
             }
 
             productRepository.SetProductOnSale(transaction.Product);
+
             if (TransactionRepository.ProcessReturnTransaction(marketPlace, transaction, buyer) == Domain.DomainEnums.Result.Failed)
             {
                 Console.WriteLine("Pogreska prilikom vracanja proizvoda");
                 return;
             }
+
             Console.WriteLine("Kupnja izbrisana s liste transakcija");
 
             Console.WriteLine($"\nProizvod uspjesno vracen, vama je vraceno na racun: {Math.Round(transaction.Product.Price * 0.8, 2)}, trenutno stanje: {Math.Round(buyer.Amount, 2)}");

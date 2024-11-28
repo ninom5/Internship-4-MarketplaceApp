@@ -30,7 +30,7 @@ namespace MarketplaceApp.Presentation.Actions.ProductActions.Favourites
                 return;
             }
 
-            if (!ConfirmAction.Confirm("Zelite li dodati proizvod u omiljene"))
+            if (!ConfirmAction.Confirm("Zelite li dodati proizvod u omiljene y/n"))
             {
                 Console.WriteLine("Odustali ste od dodavanja proizvoda u omiljene");
                 return;

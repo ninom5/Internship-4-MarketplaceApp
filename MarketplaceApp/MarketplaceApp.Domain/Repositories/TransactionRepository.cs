@@ -33,6 +33,12 @@ namespace MarketplaceApp.Domain.Repositories
 
             marketPlace.TransactionsList.Remove(transaction);
 
+            var sellerReturnProvision = transaction.Product.Price - amountToReturn - (MarketplaceProvision * transaction.Product.Price);
+
+            ReturnedTransaction returnedTransaction = new ReturnedTransaction(Guid.NewGuid(), buyer, transaction.Seller, transaction.Product, amountToReturn, sellerReturnProvision);
+
+            marketPlace.ReturnedProductsTransactionList.Add(returnedTransaction);
+
             return Result.Success;
         }
         public static Data.Models.Transaction FindTransaction(Marketplace marketPlace, Buyer buyer, Product product)
@@ -42,9 +48,15 @@ namespace MarketplaceApp.Domain.Repositories
         }
         public List<Transaction> GetTransactionsWithinDateRange(Marketplace marketplace, DateTime startDate, DateTime endDate)
         {
-            return marketplace.TransactionsList
-                .Where(transaction => transaction.DateTimeOfTransaction >= startDate && transaction.DateTimeOfTransaction <= endDate)
-                .ToList();
+                return marketplace.TransactionsList
+                    .Where(transaction => transaction.DateTimeOfTransaction >= startDate && transaction.DateTimeOfTransaction <= endDate)
+                    .ToList();
+        }
+        public List<ReturnedTransaction> GetReturnedTransactionsWithinDateRange(Marketplace marketplace, DateTime startDate, DateTime endDate)
+        {
+            return marketplace.ReturnedProductsTransactionList
+                   .Where(transaction => transaction.DateTimeOfTransaction >= startDate && transaction.DateTimeOfTransaction <= endDate)
+                   .ToList();
         }
     }
 }

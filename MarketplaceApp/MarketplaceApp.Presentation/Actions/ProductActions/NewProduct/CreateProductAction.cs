@@ -19,7 +19,7 @@ namespace MarketplaceApp.Presentation.Actions.ProductActions.NewProduct
             Category category = Helper.ChooseCategory();
 
             Product product = new Product(name, productDescription, price, category, seller);
-            if (!ConfirmAction.Confirm($"Zelite li dodati novi proizvod: {name}"))
+            if (!ConfirmAction.Confirm($"Zelite li dodati novi proizvod: {name} y/n"))
             {
                 Console.WriteLine("Dodavanje novog proizvoda prekinuto");
                 return;

@@ -24,26 +24,26 @@ namespace MarketplaceApp.Presentation.Menu
                 {
                     case '1':
                         Helper.AllProductsOnSale(marketPlace);
-                        return;
+                        break;
                     case '2':
                         StartPurchase.StartPurchaseAction(marketPlace, buyer);
-                        return;
+                        break;
                     case '3':
                         ReturnAction action = new ReturnAction();
                         action.ReturnProduct(marketPlace, buyer);
-                        return;
+                        break;
                     case '4':  
                         FavouriteProduct favourite = new FavouriteProduct();
                         favourite.StartNewFavoriteAction(marketPlace, buyer);
-                        return;
+                        break;
                     case '5':
                         Console.WriteLine("\nKupljeni proizvodi:\n");
                         var boughtProducts = ProductRepository.BuyerProducts(buyer, marketPlace);
                         ShowProduct.PrintProducts(boughtProducts);
-                        return;
+                        break;
                     case '6':
                         FavouriteProduct.ShowFavouriteProducts(buyer);
-                        return;
+                        break;
                     case '0':
                         return;
                     default:

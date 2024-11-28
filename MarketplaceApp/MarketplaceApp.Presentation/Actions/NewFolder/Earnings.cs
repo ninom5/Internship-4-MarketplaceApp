@@ -10,7 +10,6 @@ namespace MarketplaceApp.Presentation.Actions.NewFolder
         public void CalculateEarnings(Marketplace marketPlace, Seller seller)
         {
             TransactionRepository transactionRepository = new TransactionRepository();
-            double sellerEarning = 0.0;
 
             DateTime startingDate = ReadInput.ReadDate("pocetni");
             DateTime endingDate = ReadInput.ReadDate("krajnji");
@@ -21,14 +20,27 @@ namespace MarketplaceApp.Presentation.Actions.NewFolder
                 return;
             }
 
-            var listOfTransactionsWithinDates = transactionRepository.GetTransactionsWithinDateRange(marketPlace, startingDate, endingDate);
+            var transactions = transactionRepository.GetTransactionsWithinDateRange(marketPlace, startingDate, endingDate);
+            var returnedTransactions = transactionRepository.GetReturnedTransactionsWithinDateRange(marketPlace, startingDate, endingDate);
 
-            foreach(var transaction in listOfTransactionsWithinDates)
-            {
-                sellerEarning += transaction.Product.Price * 0.95;
-            }
+            double sellerEarning = EarningsFromSoldProducts(transactions);
+            double sellerEarningFromReturnedProducts = EarningsFromReturnedProducts(returnedTransactions);
 
-            Console.WriteLine($"Zarada od: {startingDate} do: {endingDate} iznosi: {sellerEarning}");
+            if(sellerEarning + sellerEarningFromReturnedProducts == 0)
+                Console.WriteLine("\n Nije bilo transakcija u odabranom vremenu");
+            
+
+            Console.WriteLine($"Zarada prodanih proizvoda od: {startingDate} do: {endingDate} iznosi: {Math.Round(sellerEarning, 2)}, zarada od postotka vracenih proizvoda: {Math.Round(sellerEarningFromReturnedProducts, 2)}, " +
+                $"ukupno zarada iznosi: {Math.Round(sellerEarning + sellerEarningFromReturnedProducts, 2)}.");
+        }
+        private double EarningsFromSoldProducts(List<Transaction> transactions)
+        {
+            return transactions.Sum(transaction => transaction.Product.Price * 0.95);
+        }
+
+        private double EarningsFromReturnedProducts(List<ReturnedTransaction> returnedTransactions)
+        {
+            return returnedTransactions.Sum(transaction => transaction.Product.Price * 0.15);
         }
     }
 }
