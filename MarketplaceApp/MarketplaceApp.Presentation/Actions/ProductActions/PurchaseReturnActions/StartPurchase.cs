@@ -1,5 +1,7 @@
 ﻿using MarketplaceApp.Data.Models;
+using MarketplaceApp.Domain;
 using MarketplaceApp.Domain.DomainEnums;
+using MarketplaceApp.Domain.Interfaces;
 using MarketplaceApp.Domain.NewFolder;
 using MarketplaceApp.Presentation.Utility;
 using System;
@@ -22,7 +24,9 @@ namespace MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActio
 
             if (product == null) return;
 
-            ValidatePurchase validatePurchase = new ValidatePurchase();
+            IPromoCodeService promoCodeService = new PromoCodeService();
+            ValidatePurchase validatePurchase = new ValidatePurchase(promoCodeService);
+
             validatePurchase.CreateTransaction(product, buyer, marketPlace, out string message);
 
             Console.WriteLine(message);

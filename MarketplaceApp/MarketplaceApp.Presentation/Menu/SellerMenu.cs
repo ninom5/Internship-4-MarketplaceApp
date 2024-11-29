@@ -22,7 +22,7 @@ namespace MarketplaceApp.Presentation.Menu
             while (true)
             {
                 Console.WriteLine("\n1.Dodavanje proizvoda \n2.Pregled svih proizvoda odabranog prodavaca \n3.Pregled ukupne zarade od prodaje \n4.Pregled prodanih proizvoda po kategoriji " +
-                    "\n5.Pregled zarade u odredenom vrem razdoblju \n0.Glavni izbornik");
+                    "\n5.Pregled zarade u odredenom vrem razdoblju \n6.Promjena cijene proizvoda \n7.Dodavanje kupona \n0.Glavni izbornik");
                 char option = Console.ReadKey().KeyChar;
                 switch (option)
                 {
@@ -50,6 +50,9 @@ namespace MarketplaceApp.Presentation.Menu
                         var sellerProducts = repository.SellerProducts(marketPlace, seller);
                         ShowProduct.PrintProducts(sellerProducts);
                         editProduct.ChangeProductPrice(sellerProducts, marketPlace);
+                        break;
+                    case '7':
+
                         break;
                     case '0':
                         return;

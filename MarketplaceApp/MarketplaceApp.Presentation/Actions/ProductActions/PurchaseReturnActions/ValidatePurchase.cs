@@ -1,4 +1,6 @@
 ﻿using MarketplaceApp.Data.Models;
+using MarketplaceApp.Domain;
+using MarketplaceApp.Domain.Interfaces;
 using MarketplaceApp.Domain.NewFolder;
 using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.Utility;
@@ -6,6 +8,11 @@ namespace MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActio
 {
     public class ValidatePurchase
     {
+        public IPromoCodeService PromoCodeService { get; set; }
+        public ValidatePurchase(IPromoCodeService promoCodeService)
+        {
+            PromoCodeService = promoCodeService;
+        }
         public void CreateTransaction(Product product, Buyer buyer, Marketplace marketplace, out string message)
         {
             PromoCodes promoCodes = null;
@@ -20,9 +27,9 @@ namespace MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActio
             var promoCode = ReadInput.ReadPromoCode();
             if (!string.IsNullOrEmpty(promoCode))
             {
-                promoCodes = Helper.GetPromoCode(marketplace, promoCode);
+                promoCodes = PromoCodeService.GetPromoCode(marketplace, promoCode);
 
-                if (promoCodes == null || promoCodes.Category != product.ProductType || DateTime.Now > promoCodes.ValidUntil)
+                if (promoCodes == null || !PromoCodeService.IsValidPromoCode(promoCodes, product))
                     Console.WriteLine("Promo kod nije valjan");
                 else
                 {
