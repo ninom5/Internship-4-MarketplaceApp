@@ -5,6 +5,7 @@ using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.Actions.NewFolder;
 using MarketplaceApp.Presentation.Actions.ProductActions;
 using MarketplaceApp.Presentation.Actions.ProductActions.NewProduct;
+using MarketplaceApp.Presentation.Actions.PromoCodesAction;
 using MarketplaceApp.Presentation.Show;
 
 
@@ -52,7 +53,8 @@ namespace MarketplaceApp.Presentation.Menu
                         editProduct.ChangeProductPrice(sellerProducts, marketPlace);
                         break;
                     case '7':
-
+                        PromoCodesActions promoCodesActions = new PromoCodesActions();
+                        promoCodesActions.CreateCoupon(marketPlace);
                         break;
                     case '0':
                         return;

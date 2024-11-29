@@ -1,4 +1,5 @@
-﻿using MarketplaceApp.Data.Models;
+﻿using MarketplaceApp.Data.Enum;
+using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.Interfaces;
 
 
@@ -14,6 +15,12 @@ namespace MarketplaceApp.Domain
         public bool IsValidPromoCode(PromoCodes promoCode, Product product)
         {
             return promoCode != null && promoCode.Category == product.ProductType && DateTime.Now <= promoCode.ValidUntil;
+        }
+        public void AddCoupon(Marketplace marketPlace, string name, double discount, DateTime validUntil, Category category)
+        {
+            PromoCodes promoCodes = new PromoCodes(name, discount, validUntil, category);
+
+            marketPlace.PromoCodesList.Add(promoCodes);
         }
     }
 }

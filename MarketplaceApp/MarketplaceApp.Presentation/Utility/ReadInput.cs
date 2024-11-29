@@ -164,6 +164,21 @@ namespace MarketplaceApp.Domain.NewFolder
                 return userDate;
             }
         }
+        public static double ReadDiscount()
+        {
+            while (true)
+            {
+                Console.WriteLine("Unesite postotak od 1 do 100");
+                int discount = 0;
+                if (!int.TryParse(Console.ReadLine(), out discount) || discount < 1 || discount > 100)
+                {
+                    Console.WriteLine("Ne ispravan unos");
+                    continue;
+                }
+
+                return (double)(discount / 100);
+            }
+        }
         public static Category ReadCategory()
         {
             while(true)
