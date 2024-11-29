@@ -20,7 +20,7 @@ namespace MarketplaceApp.Data.Seeds
             marketplace.ProductList.AddRange(new List<Product> { productAnte1, productAnte2, productMate1 });
 
 
-            Buyer buyer1 = FactoryList.CreateBuyer("N", "n@n.n", 700);
+            Buyer buyer1 = FactoryList.CreateBuyer("N", "n@n.n", 801);
             Buyer buyer2 = FactoryList.CreateBuyer("A", "a@a.a", 10000);
 
             marketplace.UserList.AddRange(new List<Buyer> { buyer1, buyer2 });

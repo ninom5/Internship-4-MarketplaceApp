@@ -9,6 +9,7 @@ namespace MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActio
         public void CreateTransaction(Product product, Buyer buyer, Marketplace marketplace, out string message)
         {
             PromoCodes promoCodes = null;
+            double priceOfProduct = product.Price;
 
             if (product.ProductStatus != Data.Enum.ProductStatus.Na_prodaji)
             {
@@ -16,22 +17,25 @@ namespace MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActio
                 return;
             }
 
-            if (buyer.Amount < product.Price)
-            {
-                message = "Nemate dovoljno para na racunu";
-                return;
-            }
-            
             var promoCode = ReadInput.ReadPromoCode();
             if (!string.IsNullOrEmpty(promoCode))
             {
                 promoCodes = Helper.GetPromoCode(marketplace, promoCode);
-                if(promoCodes == null || promoCodes.Category != product.ProductType || DateTime.Now > promoCodes.ValidUntil)
+
+                if (promoCodes == null || promoCodes.Category != product.ProductType || DateTime.Now > promoCodes.ValidUntil)
                     Console.WriteLine("Promo kod nije valjan");
                 else
-                    Console.WriteLine($"popust od {promoCodes.Discount * 100} posto primjenjen");
+                {
+                    priceOfProduct = product.Price * (1 - promoCodes.Discount);
+                    Console.WriteLine($"popust od {promoCodes.Discount * 100} posto primjenjen, nova cijena proizvoda: {Math.Round(priceOfProduct, 2)}");
+                }
             }
 
+            if (buyer.Amount < priceOfProduct)
+            {
+                message = "Nemate dovoljno para na racunu";
+                return;
+            }
 
             if (!ConfirmAction.Confirm($"Zelite li kupiti proizvod {product.Name} y/n?"))
             {
@@ -45,9 +49,7 @@ namespace MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActio
                 return;
             }
 
-            double price = promoCodes == null ? product.Price : product.Price * (1 - promoCodes.Discount);
-
-            message = $"Proizvod: {product.Name} je uspjesno kupljen po cijeni od {Math.Round(price, 2)}";
+            message = $"Proizvod: {product.Name} je uspjesno kupljen po cijeni od {Math.Round(priceOfProduct, 2)}";
         }
     }
 }
