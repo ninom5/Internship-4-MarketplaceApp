@@ -120,6 +120,15 @@ namespace MarketplaceApp.Domain.NewFolder
                 return price;
             }
         }
+        public static string ReadPromoCode()
+        {
+            Console.WriteLine("Unesite promo kod(prazno za preskocit)");
+            var code = Console.ReadLine();
+            if (string.IsNullOrEmpty(code))
+                return "";
+
+            return code;
+        }
         public static DateTime ReadDate(string messageDate)
         {
             Console.WriteLine($"Unesite {messageDate} datum(format: dd/MM/yyyy)");

@@ -42,6 +42,10 @@ namespace MarketplaceApp.Presentation.Utility
             ShowProduct.PrintProducts(listOfProducts);
             return Result.Success;
         }
+        public static PromoCodes GetPromoCode(Marketplace marketPlace, string promoCode)
+        {
+            return marketPlace.PromoCodesList.FirstOrDefault(promoCodeName => promoCodeName.Name == promoCode);
+        }
         public static Product GetProduct(Marketplace marketPlace, Guid id)
         {
             return marketPlace.ProductList.FirstOrDefault(product => product.Id == id);

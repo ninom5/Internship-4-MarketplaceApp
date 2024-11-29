@@ -61,7 +61,7 @@ namespace MarketplaceApp.Presentation.Actions.ProductActions.PurchaseReturnActio
 
             Console.WriteLine("Kupnja izbrisana s liste transakcija");
 
-            Console.WriteLine($"\nProizvod uspjesno vracen, vama je vraceno na racun: {Math.Round(transaction.Product.Price * 0.8, 2)}, trenutno stanje: {Math.Round(buyer.Amount, 2)}");
+            Console.WriteLine($"\nProizvod uspjesno vracen, vama je vraceno na racun: {Math.Round(transaction.Price * 0.8, 2)}, trenutno stanje: {Math.Round(buyer.Amount, 2)}");
         }
     }
 }

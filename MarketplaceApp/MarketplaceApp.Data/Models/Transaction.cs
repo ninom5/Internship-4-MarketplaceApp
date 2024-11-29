@@ -15,8 +15,9 @@ namespace MarketplaceApp.Data.Models
         public Seller Seller { get; protected set; }
         public DateTime DateTimeOfTransaction { get; protected set; }
         public Product Product { get; protected set; }
+        public double Price { get; protected set; } 
         public Enum.Category ProductType { get; set; }
-        public Transaction(Guid id, Buyer buyer, Seller seller, Product product, Enum.Category category)
+        public Transaction(Guid id, Buyer buyer, Seller seller, Product product, double price, Enum.Category category)
         {
             numberOfTransactions++;
             IdOfTransaction = numberOfTransactions;
@@ -26,6 +27,7 @@ namespace MarketplaceApp.Data.Models
             DateTimeOfTransaction = DateTime.Now;
             ProductType = category;
             Product = product;
+            Price = price;
         }
     }
 }

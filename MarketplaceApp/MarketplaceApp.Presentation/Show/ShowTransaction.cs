@@ -9,7 +9,9 @@ namespace MarketplaceApp.Presentation.Show
             Console.Clear();
 
             var list = GetAllTransactions(marketplace);
-            if (!list.Any())
+            var returnedList = marketplace.ReturnedProductsTransactionList;
+
+            if (!list.Any() && ! returnedList.Any())
             {
                 Console.WriteLine("Nema transakcija");
                 return;
@@ -19,7 +21,7 @@ namespace MarketplaceApp.Presentation.Show
             foreach (var transaction in list)
             {
                 Console.WriteLine($"Id transakcije: {transaction.IdOfTransaction}, naziv proizvoda: {transaction.Product.Name}, id proizvoda: {transaction.Id}, kupac: {transaction.Buyer.Name}, " +
-                    $"prodavac: {transaction.Seller.Name}, datum i vrijeme transakcije: {transaction.DateTimeOfTransaction}, kategorija proizvoda: {transaction.ProductType}");
+                    $"prodavac: {transaction.Seller.Name}, datum i vrijeme transakcije: {transaction.DateTimeOfTransaction}, kategorija proizvoda: {transaction.ProductType}, cijena: {Math.Round(transaction.Price, 2)}");
             }
 
             if (marketplace.ReturnedProductsTransactionList.Any())

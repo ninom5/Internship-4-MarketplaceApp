@@ -26,9 +26,10 @@ namespace MarketplaceApp.Data.Seeds
             marketplace.UserList.AddRange(new List<Buyer> { buyer1, buyer2 });
 
 
-            PromoCodes promoCode1 = FactoryList.CreatePromoCode(0.20, new DateTime(2025, 11, 7), Enum.Category.Elektronika);
-            PromoCodes promoCode2 = FactoryList.CreatePromoCode(0.10, new DateTime(2024, 11, 7), Enum.Category.Odjeca);
-            PromoCodes promoCode3 = FactoryList.CreatePromoCode(0.40, new DateTime(2025, 10, 11), Enum.Category.Obuća);
+            PromoCodes promoCode1 = FactoryList.CreatePromoCode("elektronika20", 0.20, new DateTime(2025, 11, 7), Enum.Category.Elektronika);
+            PromoCodes promoCode2 = FactoryList.CreatePromoCode("odjeca10", 0.10, new DateTime(2025, 11, 7), Enum.Category.Odjeca);
+            PromoCodes promoCode3 = FactoryList.CreatePromoCode("obuca20", 0.40, new DateTime(2024, 10, 11), Enum.Category.Obuća);
+            PromoCodes promoCode4 = FactoryList.CreatePromoCode("elektrnika10", 0.10, new DateTime(2023, 11, 7), Enum.Category.Elektronika);
 
             marketplace.PromoCodesList.AddRange(new List<PromoCodes> { promoCode1, promoCode2, promoCode3 });
         }

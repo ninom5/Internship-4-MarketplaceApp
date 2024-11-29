@@ -10,30 +10,37 @@ namespace MarketplaceApp.Domain.Repositories
     public class TransactionRepository
     {
         private static double MarketplaceProvision = 0.05;
-        public static DomainEnums.Result FinishTransaction(Marketplace marketplace, Product product, Buyer buyer)
+        public static DomainEnums.Result FinishTransaction(Marketplace marketplace, Product product, Buyer buyer, PromoCodes promoCodes)
         {
-            buyer.Amount -= product.Price;
-            product.Seller.Earnings += (product.Price * 0.95);
+            double price = product.Price;
 
-            Data.Models.Transaction transaction = new Data.Models.Transaction(Guid.NewGuid(), buyer, product.Seller, product, product.ProductType);
+            if (promoCodes != null)
+                price *= (1 - promoCodes.Discount);
+
+            buyer.Amount -= price;
+            product.Seller.Earnings += (price * 0.95);
+
+            Data.Models.Transaction transaction = new Data.Models.Transaction(Guid.NewGuid(), buyer, product.Seller, product, price, product.ProductType);
+
             marketplace.TransactionsList.Add(transaction);
+
             product.ProductStatus = Data.Enum.ProductStatus.Prodano;
 
-            marketplace.MarketPlaceBalance += (product.Price * MarketplaceProvision);
+            marketplace.MarketPlaceBalance += (price * MarketplaceProvision);
 
             return DomainEnums.Result.Success;
         }
 
         public static Result ProcessReturnTransaction(Marketplace marketPlace, Data.Models.Transaction transaction, Buyer buyer)
         {
-            double amountToReturn = transaction.Product.Price * 0.8;
+            double amountToReturn = transaction.Price * 0.8;
 
             buyer.Amount += amountToReturn;
             transaction.Seller.Earnings -= amountToReturn;
 
             marketPlace.TransactionsList.Remove(transaction);
 
-            var sellerReturnProvision = transaction.Product.Price - amountToReturn - (MarketplaceProvision * transaction.Product.Price);
+            var sellerReturnProvision = transaction.Price - amountToReturn - (MarketplaceProvision * transaction.Price);
 
             ReturnedTransaction returnedTransaction = new ReturnedTransaction(Guid.NewGuid(), buyer, transaction.Seller, transaction.Product, amountToReturn, sellerReturnProvision);
 

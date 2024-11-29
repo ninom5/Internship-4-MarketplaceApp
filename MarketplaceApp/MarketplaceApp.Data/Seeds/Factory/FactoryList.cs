@@ -9,7 +9,7 @@ namespace MarketplaceApp.Data.Seeds.Factory
         public static Product CreateProduct(string name, string description, double price, Enum.Category category, Seller seller)
             => new Product(name, description, price, category, seller);
 
-        public static PromoCodes CreatePromoCode(double discount, DateTime expiryDate, Enum.Category category)
-            => new PromoCodes(discount, expiryDate, category);
+        public static PromoCodes CreatePromoCode(string name, double discount, DateTime expiryDate, Enum.Category category)
+            => new PromoCodes(name, discount, expiryDate, category);
     }
 }
