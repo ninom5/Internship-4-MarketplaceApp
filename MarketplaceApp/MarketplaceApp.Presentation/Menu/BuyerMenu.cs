@@ -17,7 +17,7 @@ namespace MarketplaceApp.Presentation.Menu
             bool isValid = false;
             while (!isValid)
             {
-                Console.WriteLine("1. Pregled svih dostupnih proizvoda \n2.Kupnja proizvoda s ID \n3.Povratak kupljenog proizvoda \n4.Dodavanje proizvoda u listu omiljenih \n5.Pregled povijesti kupljenih proizvoda" +
+                Console.WriteLine("\n1. Pregled svih dostupnih proizvoda \n2.Kupnja proizvoda s ID \n3.Povratak kupljenog proizvoda \n4.Dodavanje proizvoda u listu omiljenih \n5.Pregled povijesti kupljenih proizvoda" +
                     "\n6.Pregled liste omiljenih proizvoda \n\n0.Povratak na glavni izbornik");
                 char option = Console.ReadKey().KeyChar;
                 switch (option)

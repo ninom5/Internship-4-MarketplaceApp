@@ -13,6 +13,7 @@ namespace MarketplaceApp.Data.Models
         public List<Product> ProductList { get; set; } = new List<Product> { };
         public List<Transaction> TransactionsList { get; set; } = new List<Transaction> { };
         public List<ReturnedTransaction> ReturnedProductsTransactionList { get; set; } = new List<ReturnedTransaction> { };
+        public List<PromoCodes> PromoCodesList { get; set; } = new List<PromoCodes> { };    
         public double MarketPlaceBalance { get; set; }
         public Marketplace()
         {
@@ -20,6 +21,7 @@ namespace MarketplaceApp.Data.Models
             ProductList = new List<Product>();
             TransactionsList = new List<Transaction>();
             ReturnedProductsTransactionList = new List<ReturnedTransaction>();
+            PromoCodesList = new List<PromoCodes> { };
             MarketPlaceBalance = 0.0;
         }
     }
