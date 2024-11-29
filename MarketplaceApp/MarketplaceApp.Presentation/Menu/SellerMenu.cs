@@ -3,13 +3,10 @@ using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.NewFolder;
 using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.Actions.NewFolder;
+using MarketplaceApp.Presentation.Actions.ProductActions;
 using MarketplaceApp.Presentation.Actions.ProductActions.NewProduct;
 using MarketplaceApp.Presentation.Show;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MarketplaceApp.Presentation.Menu
 {
@@ -17,7 +14,11 @@ namespace MarketplaceApp.Presentation.Menu
     {
         public static void ShowSellerOptions(Seller seller, Marketplace marketPlace)
         {
+            Thread.Sleep(2000);
+            Console.Clear();
+
             ProductRepository repository = new ProductRepository();
+            EditProduct editProduct = new EditProduct();
             while (true)
             {
                 Console.WriteLine("\n1.Dodavanje proizvoda \n2.Pregled svih proizvoda odabranog prodavaca \n3.Pregled ukupne zarade od prodaje \n4.Pregled prodanih proizvoda po kategoriji " +
@@ -44,6 +45,11 @@ namespace MarketplaceApp.Presentation.Menu
                     case '5':
                         Earnings earnings = new Earnings();
                         earnings.CalculateEarnings(marketPlace, seller);
+                        break;
+                    case '6':
+                        var sellerProducts = repository.SellerProducts(marketPlace, seller);
+                        ShowProduct.PrintProducts(sellerProducts);
+                        editProduct.ChangeProductPrice(sellerProducts, marketPlace);
                         break;
                     case '0':
                         return;

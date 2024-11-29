@@ -1,11 +1,6 @@
 ﻿using MarketplaceApp.Data.Models;
 using MarketplaceApp.Domain.Repositories;
 using MarketplaceApp.Presentation.Menu;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarketplaceApp.Presentation.Actions.LoginRegister.Login
 {

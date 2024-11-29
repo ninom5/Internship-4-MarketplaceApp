@@ -11,7 +11,7 @@ namespace MarketplaceApp.Data.Models
         public Guid Id { get; }
         public string Name { get; }
         public string Description { get; }
-        public double Price { get; protected set; }
+        public double Price { get; set; }
         public Seller Seller { get; protected set; }
         public Enum.ProductStatus ProductStatus { get; set; }
         public Enum.Category ProductType { get; protected set; }
