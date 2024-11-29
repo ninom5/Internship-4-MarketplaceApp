@@ -21,7 +21,7 @@ namespace MarketplaceApp.Presentation.Show
             Console.WriteLine("\n");
             foreach (var product in productList)
             {
-                Console.WriteLine($"Ime proizvoda: {product.Name}, opis proizvoda: {product.Description}, id proizvoda: {product.Id}, cijena: {product.Price}, status proizvoda: {product.ProductStatus}, kategorija: {product.ProductType}, prodavac: {product.Seller.Name}");
+                Console.WriteLine($"Ime proizvoda: {product.Name}, opis proizvoda: {product.Description}, id proizvoda: {product.Id}, cijena: {product.Price}, status proizvoda: {product.ProductStatus}, kategorija: {product.ProductType}, prodavac: {product.Seller.Name}, ocjena: {product.Rating}");
             }
 
             return true;

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace MarketplaceApp.Data.Models
 {
     public class Product
@@ -15,7 +10,8 @@ namespace MarketplaceApp.Data.Models
         public Seller Seller { get; protected set; }
         public Enum.ProductStatus ProductStatus { get; set; }
         public Enum.Category ProductType { get; protected set; }
-        public Product(string name, string description, double price, Enum.Category productType, Seller seller)
+        public double Rating { get; set; }
+        public Product(string name, string description, double price, Enum.Category productType, Seller seller, double rating)
         {
             Id = Guid.NewGuid();
             Name = name;
@@ -24,6 +20,7 @@ namespace MarketplaceApp.Data.Models
             ProductStatus = Enum.ProductStatus.Na_prodaji;
             ProductType = productType;
             Seller = seller;
+            Rating = rating;
         }
     }
 }

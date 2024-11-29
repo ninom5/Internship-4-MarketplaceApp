@@ -1,5 +1,6 @@
 ﻿
 using MarketplaceApp.Data.Enum;
+using System.Globalization;
 
 namespace MarketplaceApp.Domain.NewFolder
 {
@@ -118,6 +119,23 @@ namespace MarketplaceApp.Domain.NewFolder
                     continue;
                 }
                 return price;
+            }
+        }
+        public static double ReadRating()
+        {
+            while (true)
+            {
+                Console.WriteLine("Unesite ocijenu proizvoda(od 1 do 5)");
+                double rating = 0.0;
+                var userInput = Console.ReadLine();
+
+                if (!double.TryParse(userInput, NumberStyles.Float, CultureInfo.InvariantCulture, out rating) || rating < 1 || rating > 5)
+                {
+                    Console.WriteLine("ne ispravan unos");
+                    continue;
+                }
+
+                return rating;
             }
         }
         public static string ReadPromoCode()

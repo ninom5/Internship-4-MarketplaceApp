@@ -18,7 +18,9 @@ namespace MarketplaceApp.Presentation.Actions.ProductActions.NewProduct
 
             Category category = Helper.ChooseCategory();
 
-            Product product = new Product(name, productDescription, price, category, seller);
+            double averageRating = ReadInput.ReadRating();
+
+            Product product = new Product(name, productDescription, price, category, seller, averageRating);
             if (!ConfirmAction.Confirm($"Zelite li dodati novi proizvod: {name} y/n"))
             {
                 Console.WriteLine("Dodavanje novog proizvoda prekinuto");

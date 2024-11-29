@@ -13,9 +13,9 @@ namespace MarketplaceApp.Data.Seeds
             marketplace.UserList.AddRange(new List<User> { sellerAnte, sellerMate });
 
 
-            Product productAnte1 = FactoryList.CreateProduct("Kompjuter", "Gaming kompjuter", 1000.00, Enum.Category.Elektronika, sellerAnte);
-            Product productAnte2 = FactoryList.CreateProduct("Majica", "Majica kratkih rukava", 24.00, Enum.Category.Odjeca, sellerAnte);
-            Product productMate1 = FactoryList.CreateProduct("Laptop", "Lenovo", 649.99, Enum.Category.Elektronika, sellerMate);
+            Product productAnte1 = FactoryList.CreateProduct("Kompjuter", "Gaming kompjuter", 1000.00, Enum.Category.Elektronika, sellerAnte, 4.5);
+            Product productAnte2 = FactoryList.CreateProduct("Majica", "Majica kratkih rukava", 24.00, Enum.Category.Odjeca, sellerAnte, 3.2);
+            Product productMate1 = FactoryList.CreateProduct("Laptop", "Lenovo", 649.99, Enum.Category.Elektronika, sellerMate, 4.8);
 
             marketplace.ProductList.AddRange(new List<Product> { productAnte1, productAnte2, productMate1 });
 
